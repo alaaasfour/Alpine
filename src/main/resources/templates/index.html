@@ -1,18 +1,6 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Alpine Bookstore</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/css/non-responsive.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet" />
-    <link rel="icon" href="/images/logo.png" />
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" ></head>
 
 <body>
 <div class="page-top" style="width: 100%; height: 1px; background-color: #8a6d3b">
@@ -31,27 +19,36 @@
             <a class="navbar-brand" href="#">Alpine Bookstore</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-left">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle"
                                         data-toggle="dropdown" role="button" aria-haspopup="true"
-                                        aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                        aria-expanded="false">Books <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Brows the Bookshelf</a></li>
+                        <li><a href="#">Store Hours &#38; Location</a></li>
+                        <li><a href="#">FAQ</a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul></li>
+                        <li class="dropdown-header">Featured</li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">New Offers</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+                <form class="navbar-form">
+                    <div class="form-group">
+                            <input type="text" name="keyword" class="form-control" placeholder="Book Title" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <li><a href="./">Shopping Cart <span class="sr-only">(current)</span></a></li>
+                <li><a href="../navbar-static-top/">My Account</a></li>
+                <li><a href="../navbar-fixed-top/">Log out</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -104,7 +101,6 @@
                                         literature from 45 BC, making it over 2000 years old.</p>
                                 </div>
                             </div>
-                            ...
                         </div>
 
                         <!-- Controls -->
@@ -137,7 +133,7 @@
         <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="/images/hours.png" class="img-responsive" alt="hours"/>
+                    <img src="/images/location.jpg" class="img-responsive" alt="hours"/>
                 </div>
             </div>
         </div>
@@ -151,7 +147,7 @@
         <div class="col-xs-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img src="/images/faq1.png" class="img-responsive" alt="faq"/>
+                    <img src="/images/faq.jpeg" class="img-responsive" alt="faq"/>
                 </div>
             </div>
         </div>
@@ -226,8 +222,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script
-        src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
 </body>
 </html>
