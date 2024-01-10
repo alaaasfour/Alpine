@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+<div class="page-top" style="width: 100%; height: 1px; background-color: lightgreen">
+</div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Alpine Bookstore</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Browse the Bookshelf</a></li>
+                        <li><a href="#">Store Hours &#38; Location</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Featured</li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">New Offers</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" name="keyword" class="form-control" placeholder="Book Title" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <li><a href="./">Shopping Cart <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="../navbar-static-top/">My Account</a></li>
+                <li><a href="../navbar-fixed-top/">Log out</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-10">
+            <h2 class="section-headline"><span>User Account</span></h2>
+        </div>
+        <div class="col-xs-2">
+            <img src="/images/logo-resized.png" class="img-responsive" alt="logo" width="128" height="128"/>
+        </div>
+    </div>
+    <hr style="position:absolute; width:100%; height:6px; background-color: #333; z-index:-1; margin-top:33px;" />
+    <img class="img-responsive" src="/images/wood.jpeg" style="margin-top: 120px;" alt="wood"/>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-xs-6 ">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#tab-1" data-toggle="tab">
+                        <span class="text-danger">Create new account</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tab-2" data-toggle="tab">
+                        <span class="text-danger">Log in</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tab-3" data-toggle="tab">
+                        <span class="text-danger">Forget Password</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Tab panels-->
+            <div class="tab-content">
+                <!-- Create a New Account -->
+                <div class="tab-pane fade in active" id="tab-1">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color: #f5f5f5; padding: 20px;">
+                            <form>
+                                <div class="form-group">
+                                    <label for="newUsername">* Username:</label>
+                                    <input required="required" type="text" class="form-control" id="newUsername" name="username" placeholder="Enter your username" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">* Email Address:</label>
+                                    <input required="required" type="text" class="form-control" id="email" name="email" placeholder="Enter your email address" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Create a New Account</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Log in -->
+                <div class="tab-pane fade" id="tab-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color: #f5f5f5; padding: 20px;">
+                            <form>
+                                <div class="form-group">
+                                    <label for="newUsername">* Username:</label>
+                                    <input required="required" type="text" class="form-control" id="username" name="username" placeholder="Enter your username" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">* Password:</label>
+                                    <input required="required" type="password" class="form-control" id="password" name="password" placeholder="Enter your password" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Log in</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forgot Password -->
+                <div class="tab-pane fade" id="tab-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color: #f5f5f5; padding: 20px;">
+                            <form>
+                                <div class="form-group">
+                                    <label for="recoverEmail">* Email Address:</label>
+                                    <input required="required" type="text" class="form-control" id="recoverEmail" name="email" placeholder="Enter your registered email" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Reset Password</button>
+                                <button type="reset" class="btn btn-primary">Reset</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end of container -->
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
+</body>
+
+</html>
