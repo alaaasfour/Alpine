@@ -64,43 +64,61 @@
     </div>
     <hr style="position:absolute; width:100%; height:6px; background-color: #333; z-index:-1; margin-top:33px;" />
     <img class="img-responsive" src="/images/wood.jpeg" style="margin-top: 120px;" alt="wood"/>
-    <div class="row" style="margin-top: 50px;">
-        <div class="col-xs-6">
-            <div class="col-xs-9 col-xs-offset-5">
-                <div th:if="${emptyList}">
-                    <h5 style="font-style: italic">No results were found! Try something else or try again later!</h5>
-                </div>
-                <table border="0" id="bookList">
-                    <thead><tr><th></th></tr></thead>
-                    <tbody>
-                        <tr class="book-item" data-th-each="book : ${bookList}">
-                            <td>
+
+    <form th:action="@{/shoppingCart/addItem}" method="post">
+        <input hidden="hidden" th:field="*{book.id}" />
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-xs-3">
+                <a th:href="@{/bookshelf}">Back to Book List</a><br/>
+                <img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books/}+${book.id}+'.png'" />
+            </div>
+
+            <div class="col-xs-9">
+                <h3 th:text="${book.title}">Book Title</h3>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h5><strong>Author: </strong><span th:text="${book.author}"></span></h5>
+                        <p><strong>Publisher: </strong><span th:text="${book.publisher}"></span></p>
+                        <p><strong>Publication Date: </strong><span th:text="${book.publicationDate}"></span></p>
+                        <p><strong>Language: </strong><span th:text="${book.language}"></span></p>
+                        <p><strong>Category: </strong><span th:text="${book.category}"></span></p>
+                        <p><strong><span th:text="${book.format}"></span>: </strong><span th:text="${book.numberOfPages}"></span> Pages</p>
+                        <p><strong>ISBN: </strong><span th:text="${book.isbn}"></span></p>
+                        <p><strong>Shipping Weight: </strong><span th:text="${book.shippingWeight}"></span> Ounces</p>
+                    </div>
+
+                    <div class="col-xs-7">
+                        <div class="panel panel-default" style="border-width: 5px; margin-top: 20px;">
+                            <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-xs-3">
-                                        <a th:href="@{/bookDetails?id=}+${book.id}"><img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books/}+${book.id}+'.png'" /></a>
+                                    <div class="col-xs-6">
+                                        <h4>Alpine Price: <span style="color:#db3208;">$<span th:text="${book.ourPrice}"></span></span></h4>
+                                        <p>List Price: <span style="text-decoration: line-through">$<span th:text="${book.listPrice}"></span></span></p>
+                                        <p>You save: $<span th:text="${#numbers.formatDecimal((book.listPrice - book.ourPrice), 0, 'COMMA', 2, 'POINT' )}"></span></p>
+                                        <span>Qty: </span>
+                                        <select name="qty">
+                                            <option th:each="qty : ${qtyList}" th:value="${qty}" th:text="${qty}">
+                                            </option>
+                                        </select>
                                     </div>
-                                    <div class="col-xs-9">
-                                        <a th:href="@{/bookDetails?id=}+${book.id}"><h4 th:text="${book.title}"></h4></a>
-                                        <span th:text="${book.publicationDate}"></span>
-                                        <span th:text="${book.author}"></span>
-                                        <a th:href="@{/bookDetails?id=}+${book.id}"><span th:text="${#strings.capitalize(book.format)}"></span></a>
-                                        <span th:text="${book.numberOfPages}"> Pages</span>
-                                        <a th:href="@{/bookDetails?id=}+${book.id}"><span style="font-size:x-large;color:#db3208;">$<span
-                                                th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
-
-                                        <span style="text-decoration: line-through;">$<span
-                                                th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
-
-                                        <p th:text="${#strings.abbreviate(book.description, 500)}"></p>
+                                    <div class="col-xs-6">
+                                        <h4 th:if="*{book.inStockNumber&gt;10}" style="color: green">In Stock</h4>
+                                        <h4 th:if="*{book.inStockNumber&lt;10 and book.inStockNumber&gt;0}" style="color: green">Only <span th:text="${book.inStockNumber}"> In Stock</span></h4>
+                                        <h4 th:if="*{book.inStockNumber==0}" style="color:darkred;">Unavailable</h4>
+                                        <button type="submit" class="btn btn-warning" style="color:black;border:1px solid black; padding: 10px 40px 10px 40px;">Add to Cart</button>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <p th:text="${book.description}"></p>
             </div>
+
+
         </div>
-    </div>
+    </form>
 </div>
 <!-- end of container -->
 
