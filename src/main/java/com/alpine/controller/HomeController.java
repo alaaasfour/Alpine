@@ -1,9 +1,11 @@
 package com.alpine.controller;
 
 import com.alpine.domain.User;
+import com.alpine.domain.Book;
 import com.alpine.domain.security.PasswordResetToken;
 import com.alpine.domain.security.Role;
 import com.alpine.domain.security.UserRole;
+import com.alpine.service.BookService;
 import com.alpine.service.UserService;
 import com.alpine.service.impl.UserSecurityService;
 import com.alpine.utility.MailConstructor;
@@ -21,13 +23,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class HomeController {
@@ -39,6 +37,8 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private UserSecurityService userSecurityService;
+    @Autowired
+    private BookService bookService;
     @RequestMapping("/")
     public String index() {
         return "index";
@@ -48,6 +48,13 @@ public class HomeController {
     public String login(Model model) {
         model.addAttribute("classActiveLogin", true);
         return "myAccount";
+    }
+
+    @RequestMapping("/bookshelf")
+    public String bookshelf(Model model) {
+        List<Book> bookList = bookService.findAll();
+        model.addAttribute("bookList", bookList);
+        return "bookshelf";
     }
     @RequestMapping("/forgetPassword")
     public String forgetPassword(

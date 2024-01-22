@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+<div class="page-top" style="width: 100%; height: 1px; background-color: lightgreen">
+</div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Alpine Bookstore</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Browse the Bookshelf</a></li>
+                        <li><a href="#">Store Hours &#38; Location</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Featured</li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">New Offers</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" name="keyword" class="form-control" placeholder="Book Title" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <li><a href="common">Shopping Cart <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
+                <li class="active"><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-10">
+            <h2 class="section-headline"><span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'All Books'">User</span></h2>
+        </div>
+        <div class="col-xs-2">
+            <img src="/images/logo-resized.png" class="img-responsive" alt="logo" width="128" height="128"/>
+        </div>
+    </div>
+    <hr style="position:absolute; width:100%; height:6px; background-color: #333; z-index:-1; margin-top:33px;" />
+    <img class="img-responsive" src="/images/wood.jpeg" style="margin-top: 120px;" alt="wood"/>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-xs-6">
+            <div class="col-xs-9">
+                <div th:if="${emptyList}">
+                    <h5 style="font-style: italic">No results were found! Try something else or try again later!</h5>
+                </div>
+                <table border="0" id="bookList">
+                    <thead><tr><th></th></tr></thead>
+                    <tbody>
+                        <tr class="book-item" data-th-each="book : ${bookList}">
+                            <td>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books}+${book.id}+'.png'"/>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <h4 th:text="book.title"></h4>
+                                        <span th:text="${book.publicationDate}"></span>
+                                        <span th:text="book.author"></span>
+                                        <span th:text="${#strings.capitalize(book.format)}"></span>
+                                        <span th:text="${book.numberOfPages}"> Pages</span>
+                                        <span style="font-size:x-large;color:#db3208;">$<span
+                                                th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+                                        <span style="text-decoration: line-through;">$<span
+                                                th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+
+                                        <p th:text="${#strings.abbreviate(book.description, 500)}"></p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
+</body>
+</html>
