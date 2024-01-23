@@ -96,19 +96,36 @@ public class HomeController {
         String password = SecurityUtility.randomPassword();
         String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
         user.setPassword(encryptedPassword);
-
-
         userService.save(user);
-
         String token = UUID.randomUUID().toString();
         userService.createPasswordResetTokenForUser(user, token);
-
         String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
         SimpleMailMessage newEmail = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user, password);
         mailSender.send(newEmail);
-
         model.addAttribute("forgetPasswordEmailSent", true);
         return "myAccount";
+    }
+
+    @RequestMapping("/myProfile")
+    public String myProfile(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+		/*model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+		model.addAttribute("orderList", user.getOrderList());*/
+
+        UserShipping userShipping = new UserShipping();
+        model.addAttribute("userShipping", userShipping);
+
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        List<String> stateList = USConstants.listOfUSStatesCode;
+        Collection.sort(stateList);
+        model.addAttribute("stateList", stateList);
+        model.addAttribute("classActiveEdit", true);
+
+        return "myProfile";
     }
     @RequestMapping(value = "/newUser", method = RequestMethod.POST)
     public String newUserPost(
