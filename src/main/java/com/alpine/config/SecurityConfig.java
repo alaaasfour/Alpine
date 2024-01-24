@@ -1,5 +1,4 @@
 package com.alpine.config;
-
 import com.alpine.service.impl.UserSecurityService;
 import com.alpine.utility.SecurityUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +12,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private Environment env;
-
     @Autowired
     private UserSecurityService userSecurityService;
-
     private BCryptPasswordEncoder passwordEncoder() {
         return SecurityUtility.passwordEncoder();
     }
-
     private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
             "/js/**",
@@ -42,7 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/bookshelf",
             "/bookDetails"
     };
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -59,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe();
     }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());

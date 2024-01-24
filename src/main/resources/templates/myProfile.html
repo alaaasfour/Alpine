@@ -66,7 +66,7 @@
     <hr style="position:absolute; width:100%; height:6px; background-color: #333; z-index:-1; margin-top:33px;" />
     <img class="img-responsive" src="/images/wood.jpeg" style="margin-top: 120px;" alt="wood"/>
     <div class="row" style="margin-top: 50px;">
-        <div class="col-xs-6 ">
+        <div class="col-xs-8 ">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="nav-item" th:classappend="${classActiveEdit}? 'active'">
@@ -96,7 +96,7 @@
             <!-- Tab panels-->
             <div class="tab-content">
                 <!-- Edit User Information -->
-                <div class="tab-pane fade" id="tab-1" th:classappend="${classActiveEdit}? 'in active'">
+                <div class="tab-pane fade" id="tab-2" th:classappend="${classActiveEdit}? 'in active'">
                     <div class="panel panel-default">
                         <div class="panel-body" style="background-color: #f5f5f5; padding: 20px;">
                             <form th:action="@{/updateUserInfo}" method="post">
@@ -151,7 +151,7 @@
                 </div>
 
                 <!-- Order Information -->
-                <div class="tab-pane fade" id="tab-2" th:classappend="${classActiveEdit}? 'in active'">
+                <div class="tab-pane fade" id="tab-1" th:classappend="${classActiveEdit}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
@@ -160,7 +160,7 @@
                     </div>
                 </div>
 
-                <!-- Order Information -->
+                <!-- Billing Information -->
                 <div class="tab-pane fade" id="tab-3" th:classappend="${classActiveEdit}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
@@ -170,7 +170,7 @@
                                         <a th:href="@{/listOfCreditCard}" th:style="${listOfCreditCards}? 'color:red'">List of Credit Cards</a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color:red'">Add (Update) Credit Card</a>
+                                        <a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color:red'">Add/Update Credit Card</a>
                                     </li>
                                 </ol>
 
@@ -204,8 +204,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
 
             </div>

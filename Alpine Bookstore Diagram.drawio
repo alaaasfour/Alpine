@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-01-22T16:40:53.230Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="BHcSr6rB1FLXHGnBaR63" version="22.1.21" type="device">
+<mxfile host="app.diagrams.net" modified="2024-01-23T21:50:03.669Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="Mz_fTPzXxRpZAwR5NESJ" version="22.1.21" type="device">
   <diagram name="ERD Alpine Bookstore" id="efa7a0a1-bf9b-a30e-e6df-94a7791c09e9">
-    <mxGraphModel dx="1069" dy="748" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" background="none" math="0" shadow="0">
+    <mxGraphModel dx="974" dy="623" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,29 +10,23 @@
         <mxCell id="V7H8Wha3FZnOUQtV0K5t-115" value="-id: Long&lt;br&gt;-username: String&lt;br&gt;-password: String&lt;br&gt;-firstName: String&lt;br&gt;-lastName: String&lt;br&gt;-email: String&lt;br&gt;-phone: String" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="V7H8Wha3FZnOUQtV0K5t-114" vertex="1">
           <mxGeometry y="50" width="160" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="V7H8Wha3FZnOUQtV0K5t-116" value="User Payment" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" vertex="1">
+        <mxCell id="V7H8Wha3FZnOUQtV0K5t-116" value="User Billing" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="600" y="40" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="V7H8Wha3FZnOUQtV0K5t-117" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="V7H8Wha3FZnOUQtV0K5t-116" vertex="1">
           <mxGeometry y="50" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="V7H8Wha3FZnOUQtV0K5t-118" value="User Shippinng" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" vertex="1">
+        <mxCell id="V7H8Wha3FZnOUQtV0K5t-118" value="User Payment" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="320" y="40" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="V7H8Wha3FZnOUQtV0K5t-119" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="V7H8Wha3FZnOUQtV0K5t-118" vertex="1">
           <mxGeometry y="50" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="V7H8Wha3FZnOUQtV0K5t-120" value="User Billing" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" vertex="1">
+        <mxCell id="V7H8Wha3FZnOUQtV0K5t-120" value="User Shipping" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;fillColor=#fff2cc;gradientColor=#ffd966;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="40" y="40" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="V7H8Wha3FZnOUQtV0K5t-121" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" parent="V7H8Wha3FZnOUQtV0K5t-120" vertex="1">
           <mxGeometry y="50" width="160" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="V7H8Wha3FZnOUQtV0K5t-122" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERoneToMany;rounded=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;curved=0;" parent="1" source="V7H8Wha3FZnOUQtV0K5t-114" target="V7H8Wha3FZnOUQtV0K5t-116" edge="1">
-          <mxGeometry width="100" height="100" relative="1" as="geometry">
-            <mxPoint x="380" y="210" as="sourcePoint" />
-            <mxPoint x="370" y="50" as="targetPoint" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="V7H8Wha3FZnOUQtV0K5t-123" value="" style="fontSize=12;html=1;endArrow=ERoneToMany;rounded=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="V7H8Wha3FZnOUQtV0K5t-119" edge="1">
           <mxGeometry width="100" height="100" relative="1" as="geometry">
@@ -134,6 +128,12 @@
             <Array as="points">
               <mxPoint x="410" y="450" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CVQ6e71vavD90Ppe_7d5-2" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmandOne;startArrow=ERmandOne;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="V7H8Wha3FZnOUQtV0K5t-118" target="V7H8Wha3FZnOUQtV0K5t-116">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="410" y="220" as="sourcePoint" />
+            <mxPoint x="510" y="120" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
