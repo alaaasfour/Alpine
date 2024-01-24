@@ -80,7 +80,6 @@ public class StatesProvincesConstants {
             put("YT", "Yukon");
         }
     };
-
     public final static List<String> listOfUSStatesCode = new ArrayList<>(mapOfUSStates.keySet());
     public final static List<String> listOfUSStatesName = new ArrayList<>(mapOfUSStates.values());
     public final static List<String> listOfCanadianProvincesCode = new ArrayList<>(mapOfCanadianProvinces.keySet());

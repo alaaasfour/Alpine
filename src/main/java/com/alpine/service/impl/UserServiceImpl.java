@@ -1,6 +1,8 @@
 package com.alpine.service.impl;
 
 import com.alpine.domain.User;
+import com.alpine.domain.UserBilling;
+import com.alpine.domain.UserPayment;
 import com.alpine.domain.security.PasswordResetToken;
 import com.alpine.domain.security.UserRole;
 import com.alpine.repository.PasswordResetTokenRepository;
@@ -65,5 +67,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+        userPayment.setUser(user);
+        userPayment.setUserBilling(userBilling);
+        userPayment.setDefaultPayment(true);
+        userBilling.setUserPayment(userPayment);
+        user.getUserPaymentList().add(userPayment);
+        save(user);
     }
 }

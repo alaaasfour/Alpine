@@ -111,6 +111,10 @@ public class HomeController {
 
         List<String> stateList = StatesProvincesConstants.listOfUSStatesCode;
         List<String> provinceList = StatesProvincesConstants.listOfCanadianProvincesCode;
+        List<String> countryList = new ArrayList<>();
+        countryList.add(StatesProvincesConstants.US);
+        countryList.add(StatesProvincesConstants.CA);
+        model.addAttribute("countryList", countryList);
 
         Collections.sort(stateList);
         Collections.sort(provinceList);
@@ -177,12 +181,35 @@ public class HomeController {
         return "/myProfile";
     }
 
+    @RequestMapping(value = "/addNewCreditCard", method = RequestMethod.POST)
+    public String addNewCreditCard(
+            @ModelAttribute("userPayment") UserPayment userPayment,
+            @ModelAttribute("userBilling") UserBilling userBilling,
+            Principal principal, Model model
+            ) {
+        User user = userService.findByUsername(principal.getName());
+        userService.updateUserBilling(userBilling, userPayment, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        return "myProfile";
+    }
+
+    
+
     @RequestMapping("/addNewShippingAddress")
     public String addNewShippingAddress(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("addNewShippingAddress", true);
         model.addAttribute("classActiveShipping", true);
+        model.addAttribute("listOfCreditCards", true);
+
 
         UserShipping userShipping = new UserShipping();
         model.addAttribute("userShipping", userShipping);
