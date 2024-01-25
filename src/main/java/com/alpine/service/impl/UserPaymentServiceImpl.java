@@ -20,6 +20,8 @@ public class UserPaymentServiceImpl implements UserPaymentService {
     public UserPayment save(UserPayment userPayment) {
         return userPaymentRepository.save(userPayment);
     }
-
+    public void removeById(Long id) {
+        userPaymentRepository.deleteById(id);
+    }
 
 }
