@@ -236,6 +236,20 @@ public class HomeController {
         }
     }
 
+    @RequestMapping(value = "/setDefaultPayment", method = RequestMethod.POST)
+    public String setDefaultPayment(@ModelAttribute("defaultUserPaymentId") Long defaultPaymentId, Principal principal, Model model) {
+        User user = userService.findByUsername(principal.getName());
+        userService.setUserDefaultPayment(defaultPaymentId, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActivityBilling", true);
+        model.addAttribute("listOfShippingAddresses", true);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+
+        return "myProfile";
+    }
     @RequestMapping("/removeCreditCard")
     public String removeCreditCard(@ModelAttribute("id") Long creditCardId, Principal principal, Model model) {
         User user = userService.findByUsername(principal.getName());

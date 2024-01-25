@@ -17,4 +17,5 @@ public interface UserService {
     User createUser(User user, Set<UserRole> userRoles) throws Exception;
     User save(User user);
     void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
+    void setUserDefaultPayment(Long userPaymentId, User user);
 }
