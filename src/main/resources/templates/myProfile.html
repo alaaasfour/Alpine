@@ -170,7 +170,7 @@
                                         <a th:href="@{/listOfCreditCards}" th:style="${listOfCreditCards}? 'color:red'">List of Credit Cards</a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color:red'">Add/Update Credit Card</a>
+                                        <a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color:red'">Add Credit Card</a>
                                     </li>
                                 </ol>
 
@@ -221,7 +221,7 @@
                                         <div class="form-group">
                                             <label for="billingName">* Name</label>
                                             <input type="text" class="form-control" id="billingName"
-                                                   placeHoder="Receiver Name" th:name="userBillingName"
+                                                   placeholder="Receiver Name" th:name="userBillingName"
                                                    required="required" th:value="${userBilling.userBillingName}" />
                                         </div>
 
