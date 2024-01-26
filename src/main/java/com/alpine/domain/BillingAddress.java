@@ -17,9 +17,9 @@ public class BillingAddress {
     private String BillingAddressStreet1;
     private String BillingAddressStreet2;
     private String BillingAddressCity;
-    private String BillingAddressState;
+    private String BillingAddressStateProvince;
     private String BillingAddressCountry;
-    private String BillingAddressZipcode;
+    private String BillingAddressZipPostalCode;
     @OneToOne
     private Order order;
     public Long getId() {
@@ -52,11 +52,11 @@ public class BillingAddress {
     public void setBillingAddressCity(String billingAddressCity) {
         BillingAddressCity = billingAddressCity;
     }
-    public String getBillingAddressState() {
-        return BillingAddressState;
+    public String getBillingAddressStateProvince() {
+        return BillingAddressStateProvince;
     }
-    public void setBillingAddressState(String billingAddressState) {
-        BillingAddressState = billingAddressState;
+    public void setBillingAddressStateProvince(String billingAddressStateProvince) {
+        BillingAddressStateProvince = billingAddressStateProvince;
     }
     public String getBillingAddressCountry() {
         return BillingAddressCountry;
@@ -64,11 +64,11 @@ public class BillingAddress {
     public void setBillingAddressCountry(String billingAddressCountry) {
         BillingAddressCountry = billingAddressCountry;
     }
-    public String getBillingAddressZipcode() {
-        return BillingAddressZipcode;
+    public String getBillingAddressZipPostalCode() {
+        return BillingAddressZipPostalCode;
     }
-    public void setBillingAddressZipcode(String billingAddressZipcode) {
-        BillingAddressZipcode = billingAddressZipcode;
+    public void setBillingAddressZipcode(String billingAddressZipPostalCode) {
+        BillingAddressZipPostalCode = billingAddressZipPostalCode;
     }
     public Order getOrder() {
         return order;

@@ -16,9 +16,9 @@ public class ShippingAddress {
     private String ShippingAddressStreet1;
     private String ShippingAddressStreet2;
     private String ShippingAddressCity;
-    private String ShippingAddressState;
+    private String ShippingAddressStateProvince;
     private String ShippingAddressCountry;
-    private String ShippingAddressZipcode;
+    private String ShippingAddressZipPostalCode;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -53,11 +53,11 @@ public class ShippingAddress {
     public void setShippingAddressCity(String shippingAddressCity) {
         ShippingAddressCity = shippingAddressCity;
     }
-    public String getShippingAddressState() {
-        return ShippingAddressState;
+    public String getShippingAddressStateProvince() {
+        return ShippingAddressStateProvince;
     }
-    public void setShippingAddressState(String shippingAddressState) {
-        ShippingAddressState = shippingAddressState;
+    public void setShippingAddressStateProvince(String shippingAddressStateProvince) {
+        ShippingAddressStateProvince = shippingAddressStateProvince;
     }
     public String getShippingAddressCountry() {
         return ShippingAddressCountry;
@@ -65,11 +65,11 @@ public class ShippingAddress {
     public void setShippingAddressCountry(String shippingAddressCountry) {
         ShippingAddressCountry = shippingAddressCountry;
     }
-    public String getShippingAddressZipcode() {
-        return ShippingAddressZipcode;
+    public String getShippingAddressZipPostalCode() {
+        return ShippingAddressZipPostalCode;
     }
-    public void setShippingAddressZipcode(String shippingAddressZipcode) {
-        ShippingAddressZipcode = shippingAddressZipcode;
+    public void setShippingAddressZipPostalCode(String shippingAddressZipPostalCode) {
+        ShippingAddressZipPostalCode = shippingAddressZipPostalCode;
     }
     public User getUser() {
         return user;
