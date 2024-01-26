@@ -377,12 +377,14 @@
                                             <tbody>
                                             <tr th:each="userShipping : ${userShippingList}">
                                                 <td><input type="radio" name="defaultShippingAddressId" /></td>
-                                                <td th:text="${userShipping.userShippingStreet1}+', '+
-                                                             ${userShipping.userShippingStreet2 != null ? userShipping.userShippingStreet2 + ', ' : ''} +
-														     ${userShipping.userShippingCity}+', '+
-														     ${userShipping.userShippingStateProvince}+', '+
-														     ${userShipping.userShippingZipPostalCode}+', '+
-                                                             ${userShipping.userShippingCountry}"></td>
+                                                <td th:text="${userShipping.userShippingStreet1 +
+              (userShipping.userShippingStreet2 != null and userShipping.userShippingStreet2 != '' ? ', ' + userShipping.userShippingStreet2 : '') +
+              ', ' + userShipping.userShippingCity + ', ' +
+              userShipping.userShippingStateProvince + ', ' +
+              userShipping.userShippingZipPostalCode + ', ' +
+              userShipping.userShippingCountry}">
+
+                                                </td>
                                                 <td>
                                                     <a th:href="@{/updateUserShipping(id=${userShipping.id})}" class="btn btn-primary" role="button">Update</a>
 
