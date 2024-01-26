@@ -203,7 +203,7 @@
                                 </div>
 
                                 <div th:if="${addNewCreditCard}">
-                                    <form th:action="@{addNewCreditCard}" method="post">
+                                    <form th:action="@{/addNewCreditCard}" method="post">
                                         <div class="bg-info" th:if="${updateUserPaymentInfo}">User Information Updated Successfully!</div>
                                         <input hidden="hidden" name="id" th:value="${userPayment.id}" />
 

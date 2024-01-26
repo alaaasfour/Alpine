@@ -253,7 +253,8 @@ public class HomeController {
 
     @RequestMapping("/updateCreditCard")
     public String updateCreditCard(
-            @ModelAttribute("id") Long creditCardId, Principal principal, Model model
+            @ModelAttribute("id") Long creditCardId,
+            Principal principal, Model model
     ) {
         User user = userService.findByUsername(principal.getName());
         UserPayment userPayment = userPaymentService.findById(creditCardId);
