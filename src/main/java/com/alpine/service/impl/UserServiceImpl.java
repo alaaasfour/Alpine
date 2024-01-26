@@ -6,10 +6,7 @@ import com.alpine.domain.UserPayment;
 import com.alpine.domain.UserShipping;
 import com.alpine.domain.security.PasswordResetToken;
 import com.alpine.domain.security.UserRole;
-import com.alpine.repository.PasswordResetTokenRepository;
-import com.alpine.repository.RoleRepository;
-import com.alpine.repository.UserPaymentRepository;
-import com.alpine.repository.UserRepository;
+import com.alpine.repository.*;
 import com.alpine.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     @Autowired
     private UserPaymentRepository userPaymentRepository;
+    @Autowired
+    private UserShippingRepository userShippingRepository;
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
     @Override
@@ -97,6 +96,19 @@ public class UserServiceImpl implements UserService {
             } else {
                 userPayment.setDefaultPayment(false);
                 userPaymentRepository.save(userPayment);
+            }
+        }
+    }
+    @Override
+    public void setUserDefaultShipping(Long userShippingId, User user) {
+        List<UserShipping> userShippingtList = (List<UserShipping>) userShippingRepository.findAll();
+        for (UserShipping userShipping : userShippingtList) {
+            if (userShipping.getId() == userShippingId) {
+                userShipping.setUserShippingDefault(true);
+                userShippingRepository.save(userShipping);
+            } else {
+                userShipping.setUserShippingDefault(false);
+                userShippingRepository.save(userShipping);
             }
         }
     }
