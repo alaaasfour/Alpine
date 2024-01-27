@@ -56,7 +56,9 @@
 <div class="container">
     <div class="row" style="margin-bottom: -100px;">
         <div class="col-xs-10">
-            <h2 class="section-headline"><span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'All Books'">User</span></h2>
+            <h2 class="section-headline">
+                <span th:text="${user}? ${#strings.toUpperCase(user.username)} : 'Shopping Cart'">User</span>
+            </h2>
         </div>
         <div class="col-xs-2">
             <img src="/images/logo-resized.png" class="img-responsive" alt="logo" width="128" height="128"/>
@@ -68,7 +70,7 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-6 text-left">
-                    <a class="btn btn-primary" th:href="@{/bookshelf}">Continue Shopping</a>
+                    <a class="btn btn-warning" th:href="@{/bookshelf}">Continue Shopping</a>
                 </div>
                 <div class="col-xs-6 text-right">
                     <a class="btn btn-primary" th:href="@{/checkout(id=${shoppingCart.id})}">Check Out</a>
@@ -98,10 +100,10 @@
                     <hr/>
                     <div class="col-xs-2">
                         <a th:href="@{bookDetails(id=${cartItem.book.id})}">
-                            <img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/book/}+${cartItem.book.id}+'.png'">
+                            <img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books/}+${cartItem.book.id}+'.png'">
                         </a>
                         <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In Stock</p>
-                        <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">Only <span th:text="${cartItem.book.inStockNumber}"></span>In Stock</p>
+                        <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">Only <span th:text="${cartItem.book.inStockNumber}"></span> In Stock</p>
                         <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;">Out of Stock</p>
                     </div>
                     <div class="col-xs-2">
