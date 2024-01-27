@@ -44,7 +44,7 @@
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
-                <li><a href="common">Shopping Cart <span class="sr-only">(current)</span></a></li>
+                <li><a th:href="@{/shoppingCart/cart}">Shopping Cart <span class="sr-only">(current)</span></a></li>
                 <li class="active"><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
                 <li class="active"><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a></li>
                 <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a></li>

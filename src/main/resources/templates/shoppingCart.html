@@ -82,9 +82,15 @@
                 Your cart is empty. Please check out our bookshelf for somme books you like.
             </div>
             <div class="row">
-                <div class="col-xs-8"><h4>Products</h4></div>
-                <div class="col-xs-8"><h4>Price</h4></div>
-                <div class="col-xs-8"><h4>Qty</h4></div>
+                <div class="col-xs-8">
+                    <h4>Products</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Price</h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>Quantity</h4>
+                </div>
             </div>
             <!-- Display products in cart -->
             <div class="row" th:each="cartItem : ${cartItemList}">
@@ -112,8 +118,10 @@
             <div class="row">
                 <hr />
                 <h4 class="col-xs-12 text-right">
-                    <strong style="font-size: large;">Total Price(<span> th:text="${#lists.size(cartItemList)}"</span> items):</strong>
-                    <span style="color: #db3208; font-size: large;">$<span th:text="${shoppingCart.grandTotal}"></span></span>
+                    <strong style="font-size: large;">Total Price (<span
+                            th:text="${#lists.size(cartItemList)}"></span> items):
+                    </strong> <span style="color: #db3208; font-szie: large;">$<span
+                        th:text="${shoppingCart.grandTotal}"></span></span>
                 </h4>
             </div>
 
