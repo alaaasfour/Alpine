@@ -21,10 +21,11 @@ public class CartItem {
     private List<BookToCartItem> bookToCartItemList;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name="shopping_cart_id")
     private ShoppingCart shoppingCart;
+
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name="order_id")
     private Order order;
 
     public Long getId() {
