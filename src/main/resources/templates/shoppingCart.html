@@ -100,19 +100,33 @@
                     <hr/>
                     <div class="col-xs-2">
                         <a th:href="@{bookDetails(id=${cartItem.book.id})}">
-                            <img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books/}+${cartItem.book.id}+'.png'">
+                            <img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books/}+${cartItem.book.id}+'.png'" />
                         </a>
-                        <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In Stock</p>
-                        <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">Only <span th:text="${cartItem.book.inStockNumber}"></span> In Stock</p>
-                        <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;">Out of Stock</p>
                     </div>
+
+                    <div class="col-xs-6">
+                        <div style="margin-left:50px;">
+                            <a th:href="@{/bookDetail?id=}+${cartItem.book.id}">
+                                <h4 th:text="${cartItem.book.title}"></h4>
+                            </a>
+                            <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In Stock</p>
+                            <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">
+                                Only <span th:text="${cartItem.book.inStockNumber}"></span> In Stock</p>
+                            <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;">Product Out of Stock</p>
+                            <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}" style="color: red">Delete</a>
+                        </div>
+                    </div>
+
                     <div class="col-xs-2">
                         <h5 style="color:#db3208; font-size:large;">$<span th:text="${cartItem.book.ourPrice}" th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span></h5>
                     </div>
+
                     <div class="col-xs-2">
                         <input hidden="hidden" name="id" th:value="${cartItem.id}" />
-                        <input th:id="${cartItem.id}" th:name="qty" th:disabled="${cartItem.book.inStockNumber==0}" class="form-control cartItemQty" th:value="${cartItem.qty}">
-                        <button style="display: none;" th:id="'update-item-'+${cartItem.id}" type="submit" class="btn btn-warning btn-xs">Update</button>
+                        <input th:id="${cartItem.id}" th:name="qty" th:disabled="${cartItem.book.inStockNumber==0}" class="form-control cartItemQty" th:value="${cartItem.qty}" />
+                        <button style="display: none;" th:id="'update-item-'+${cartItem.id}" type="submit" class="btn btn-warning btn-xs">
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>
@@ -120,10 +134,12 @@
             <div class="row">
                 <hr />
                 <h4 class="col-xs-12 text-right">
-                    <strong style="font-size: large;">Total Price (<span
-                            th:text="${#lists.size(cartItemList)}"></span> items):
-                    </strong> <span style="color: #db3208; font-szie: large;">$<span
-                        th:text="${shoppingCart.grandTotal}"></span></span>
+                    <strong style="font-size: large;">
+                        Total Price (<span th:text="${#lists.size(cartItemList)}"></span> items):
+                    </strong>
+                    <span style="color: #db3208; font-size: large;">
+                        $<span th:text="${shoppingCart.grandTotal}"></span>
+                    </span>
                 </h4>
             </div>
 
@@ -136,6 +152,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div th:replace="common/header :: body-bottom-scripts"></div>
 
 </body>

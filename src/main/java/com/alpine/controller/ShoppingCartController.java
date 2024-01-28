@@ -59,4 +59,6 @@ public class ShoppingCartController {
 
         return "forward:/bookDetails?id="+book.getId();
     }
+
+    
 }
