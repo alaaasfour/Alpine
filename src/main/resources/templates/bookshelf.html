@@ -85,7 +85,7 @@
                                         <span th:text="${book.author}"></span><br/>
                                         <a th:href="@{/bookDetails?id=}+${book.id}"><span th:text="${#strings.capitalize(book.format)}"></span></a>
                                         <span th:text="${book.numberOfPages}"></span> Pages<br/>
-                                        <h5 th:if="*{book.inStockNumber&lt;10 and book.inStockNumber&gt;0}" style="color: green">Only <span th:text="${book.inStockNumber}"></span> in Stock</h5>
+                                        <h5 th:if="*{book.inStockNumber&gt;0}" style="color: green">Only <span th:text="${book.inStockNumber}"></span> in Stock</h5>
                                         <h5 th:if="*{book.inStockNumber==0}" style="color:darkred;">Out of Stock!</h5>
                                         <a th:href="@{/bookDetails?id=}+${book.id}"><span style="font-size:x-large;color:#db3208;">$<span
                                                 th:text="${#numbers.formatDecimal(book.ourPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span></a>
@@ -93,7 +93,7 @@
                                         <span style="text-decoration: line-through;">$<span
                                                 th:text="${#numbers.formatDecimal(book.listPrice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
 
-                                        <p th:text="${#strings.abbreviate(book.description, 1000)}"></p>
+                                        <p th:text="${#strings.abbreviate(book.description, 500)}"></p>
                                     </div>
                                 </div>
                             </td>
