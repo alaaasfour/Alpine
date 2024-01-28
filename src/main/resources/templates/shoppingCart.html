@@ -113,7 +113,7 @@
                             <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">
                                 Only <span th:text="${cartItem.book.inStockNumber}"></span> In Stock</p>
                             <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;">Product Out of Stock</p>
-                            <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}" style="color: red">Delete</a>
+                            <button><a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}" style="color: red">Delete</a></button>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@
 
                     <div class="col-xs-2">
                         <input hidden="hidden" name="id" th:value="${cartItem.id}" />
-                        <input th:id="${cartItem.id}" th:name="qty" th:disabled="${cartItem.book.inStockNumber==0}" class="form-control cartItemQty" th:value="${cartItem.qty}" />
+                        <input th:id="${cartItem.id}" th:name="qty" th:disabled="${cartItem.book.inStockNumber==0}" type="number" class="form-control cartItemQty" th:value="${cartItem.qty}" />
                         <button style="display: none;" th:id="'update-item-'+${cartItem.id}" type="submit" class="btn btn-warning btn-xs">
                             Update
                         </button>

@@ -47,9 +47,10 @@ public class ShoppingCartController {
             @ModelAttribute("book") Book book,
             @ModelAttribute("qty") String qty,
             Model model, Principal principal
-            ) {
+    ) {
         User user = userService.findByUsername(principal.getName());
         book = bookService.findOne(book.getId());
+
         if (Integer.parseInt(qty) > book.getInStockNumber()) {
             model.addAttribute("notEnoughStock", true);
             return "forward:/bookDetails?id="+book.getId();
@@ -58,23 +59,48 @@ public class ShoppingCartController {
         CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
         model.addAttribute("addBookSuccess", true);
 
+        book.setInStockNumber(book.getInStockNumber() - Integer.parseInt(qty));
+        bookService.save(book);
+
         return "forward:/bookDetails?id="+book.getId();
     }
 
     @RequestMapping("/updateCartItem")
     public String updateShoppingCart(
             @ModelAttribute("id") Long cartItemId,
-            @ModelAttribute("qty") int qty
-            ){
+            @ModelAttribute("qty") int newQty,
+            Model model
+    ) {
         CartItem cartItem = cartItemService.findById(cartItemId);
-        cartItem.setQty(qty);
-        cartItemService.updateCartItem(cartItem);
+        int oldQty = cartItem.getQty();
+        Book book = cartItem.getBook();
+
+        // Check if the new quantity is greater than the available stock
+        if (newQty > book.getInStockNumber()) {
+            model.addAttribute("notEnoughStock", true);
+        } else {
+            // Update the cart item quantity
+            cartItem.setQty(newQty);
+            cartItemService.updateCartItem(cartItem);
+
+            // Adjust the stock based on the changes in quantity
+            int qtyDifference = newQty - oldQty;
+            book.setInStockNumber(book.getInStockNumber() - qtyDifference);
+            bookService.save(book);
+        }
 
         return "forward:/shoppingCart/cart";
     }
 
     @RequestMapping("/removeItem")
     public String removeItem(@RequestParam("id") Long id) {
+        CartItem cartItem = cartItemService.findById(id);
+
+        Book book = cartItem.getBook();
+        int removedQty = cartItem.getQty();
+        book.setInStockNumber(book.getInStockNumber() + removedQty);
+        bookService.save(book);
+
         cartItemService.removeCartItem(cartItemService.findById(id));
 
         return "forward:/shoppingCart/cart";

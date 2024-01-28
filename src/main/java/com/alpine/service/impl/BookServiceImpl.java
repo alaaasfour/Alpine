@@ -22,4 +22,8 @@ public class BookServiceImpl implements BookService {
         Optional<Book> optionalBook = bookRepository.findById(id);
         return optionalBook.orElse(null);
     }
+    @Override
+    public Book save(Book book) {
+        return bookRepository.save(book);
+    }
 }
