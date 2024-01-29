@@ -2,6 +2,7 @@ package com.alpine.controller;
 
 import com.alpine.domain.*;
 import com.alpine.service.*;
+import com.alpine.utility.StatesProvincesConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -78,5 +81,30 @@ public class CheckoutController {
                 billingAddressService.setByUserBilling(userPayment.getUserBilling(), billingAddress);
             }
         }
+
+        model.addAttribute("shippingAddress", shippingAddress);
+        model.addAttribute("payment", payment);
+        model.addAttribute("billingAddress", billingAddress);
+        model.addAttribute("cartItemList", cartItemList);
+        model.addAttribute("shoppingCart", user.getShoppingCart());
+
+        List<String> stateList = StatesProvincesConstants.listOfUSStatesCode;
+        List<String> provinceList = StatesProvincesConstants.listOfCanadianProvincesCode;
+        List<String> countryList = new ArrayList<>();
+        countryList.add(StatesProvincesConstants.US);
+        countryList.add(StatesProvincesConstants.CA);
+        Collections.sort(stateList);
+        Collections.sort(provinceList);
+        model.addAttribute("stateList", stateList);
+        model.addAttribute("provinceList", provinceList);
+        model.addAttribute("countryList", countryList);
+
+        model.addAttribute("/classActiveShipping", true);
+        
+        if (missingRequiredField) {
+            model.addAttribute("missingRequiredField", true);
+        }
+
+        return "checkout";
     }
 }
