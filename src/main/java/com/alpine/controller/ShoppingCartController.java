@@ -8,6 +8,8 @@ import com.alpine.service.BookService;
 import com.alpine.service.CartItemService;
 import com.alpine.service.ShoppingCartService;
 import com.alpine.service.UserService;
+import com.alpine.utility.StatesProvincesConstants;
+import com.alpine.utility.TaxRateConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +40,9 @@ public class ShoppingCartController {
         shoppingCartService.updateShoppingCart(shoppingCart);
         model.addAttribute("cartItemList", cartItemList);
         model.addAttribute("shoppingCart", shoppingCart);
+
+        List<String> taxList = TaxRateConstants.listOfTaxRates;
+        model.addAttribute("taxList", taxList);
 
         return "shoppingCart";
     }
