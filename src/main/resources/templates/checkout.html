@@ -118,7 +118,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#shippingInfo"> 1. Shipping Address </a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#shippingInfo">1. Shipping Address </a>
                             </h4>
                         </div>
                         <div id="shippingInfo" class="panel-collapse collapse"
@@ -213,7 +213,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#paymentInfo"> 2. Payment Information </a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#paymentInfo">2. Payment Information </a>
                             </h4>
                         </div>
 
@@ -389,6 +389,93 @@
                         </div>
                     </div>
 
+                    <!-- 3. Review Items and Shipping -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#reviewItems">3. Review Items and Shipping </a>
+                            </h4>
+                        </div>
+                        <div id="reviewItems" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <h4>Choose your shipping method:</h4>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="shippingMethod" value="groundShipping" checked="checked" /> Ground Shipping
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="shippingMethod" value="premiumShipping" /> Premium Shipping
+                                    </label>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <h4>Products</h4>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <h4>Price</h4>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <h4>Qty</h4>
+                                    </div>
+                                </div>
+
+                                <!-- display products in cart -->
+                                <div class="row" th:each="cartItem : ${cartItemList}">
+                                    <hr />
+                                    <div class="col-xs-2">
+                                        <a th:href="@{/bookDetail(id=${cartItem.book.id})}">
+                                            <img class="img-responsive shelf-book"
+                                                th:src="#{adminPath}+@{/images/books/}+${cartItem.book.id}+'.png'"
+                                                style="width: 70px;" />
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div style="margin-left: 50px;">
+                                            <a th:href="@{/bookDetail?id=}+${cartItem.book.id}">
+                                                <h4 th:text="${cartItem.book.title}"></h4>
+                                            </a>
+                                            <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In Stock</p>
+                                            <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">
+                                                Only <span th:text="${cartItem.book.inStockNumber}"></span>In Stock
+                                            </p>
+                                            <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;">Product Unavailable</p>
+                                            <button><a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">Delete</a></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-2">
+                                        <h5 style="color: #db3208; font-size: large;">
+                                            $<span th:text="${cartItem.book.ourPrice}" th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+                                        </h5>
+                                    </div>
+
+                                    <div class="col-xs-2">
+                                        <h5 style="font-size: large;" th:text="${cartItem.qty}"></h5>
+                                    </div>
+
+                                </div>
+
+                                <hr />
+                                <hr />
+                                <h4 class="col-xs-12 text-right">
+                                    <strong style="font-size: large;">Order Total (<span
+                                            th:text="${#lists.size(cartItemList)}"></span> items):
+                                    </strong> <span style="color: #db3208; font-size: large;">$<span
+                                        th:text="${shoppingCart.grandTotal}"></span></span>
+                                </h4>
+                                <br />
+                                <br />
+                                <button type="submit" class="btn btn-warning btn-block">Place Your Order
+                                </button>
+                                <p style="font-size: smaller;">
+                                    By placing your order, you agree to Alpine's Bookstore <a href="#">privacy</a> notice and <a href="#">conditions</a> of use.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
