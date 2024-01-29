@@ -67,7 +67,7 @@ public class BillingAddress {
     public String getBillingAddressZipPostalCode() {
         return BillingAddressZipPostalCode;
     }
-    public void setBillingAddressZipcode(String billingAddressZipPostalCode) {
+    public void setBillingAddressZipPostalCode(String billingAddressZipPostalCode) {
         BillingAddressZipPostalCode = billingAddressZipPostalCode;
     }
     public Order getOrder() {
