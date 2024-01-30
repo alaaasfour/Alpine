@@ -30,6 +30,8 @@ public class CheckoutController {
     private PaymentService paymentService;
     @Autowired
     private BillingAddressService billingAddressService;
+    @Autowired
+    private UserShippingService userShippingService;
     @RequestMapping("/checkout")
     public String checkout(@RequestParam("id") Long cartId,
                            @RequestParam(value = "missingRequiredField", required = false)
@@ -107,4 +109,45 @@ public class CheckoutController {
 
         return "checkout";
     }
+
+    @RequestMapping("/setShippingAddress")
+    public String setShippingAddress(@RequestParam("userShippingId") Long userShippingId, Principal principal, Model model){
+        User user = userService.findByUsername(principal.getName());
+        UserShipping userShipping = userShippingService.findById(userShippingId);
+
+        if (userShipping.getUser().getId() != user.getId()) {
+            return "badRequestPage";
+        } else {
+            shippingAddressService.setByUserShipping(userShipping, shippingAddress);
+            List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
+            BillingAddress billingAddress = new BillingAddress();
+            model.addAttribute("shippingAddress", shippingAddress);
+            model.addAttribute("payment", payment);
+            model.addAttribute("billingAddress", billingAddress);
+            model.addAttribute("cartItemList", cartItemList);
+            model.addAttribute("shoppingCart", user.getShoppingCart());
+
+            List<String> stateList = StatesProvincesConstants.listOfUSStatesCode;
+            List<String> provinceList = StatesProvincesConstants.listOfCanadianProvincesCode;
+            List<String> countryList = new ArrayList<>();
+            countryList.add(StatesProvincesConstants.US);
+            countryList.add(StatesProvincesConstants.CA);
+            Collections.sort(stateList);
+            Collections.sort(provinceList);
+            model.addAttribute("stateList", stateList);
+            model.addAttribute("provinceList", provinceList);
+            model.addAttribute("countryList", countryList);
+
+            List<UserShipping> userShippingList = user.getUserShippingList();
+            List<UserPayment> userPaymentList = user.getUserPaymentList();
+            model.addAttribute("userShippingList", userShippingList);
+            model.addAttribute("userPaymentList", userPaymentList);
+            model.addAttribute("shippingAddress", shippingAddress);
+            model.addAttribute("classActiveShipping", true);
+
+            return "checkout";
+        }
+    }
+
+
 }
