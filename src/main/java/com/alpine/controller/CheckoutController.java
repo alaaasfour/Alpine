@@ -99,8 +99,8 @@ public class CheckoutController {
         model.addAttribute("provinceList", provinceList);
         model.addAttribute("countryList", countryList);
 
-        model.addAttribute("/classActiveShipping", true);
-        
+        model.addAttribute("classActiveShipping", true);
+
         if (missingRequiredField) {
             model.addAttribute("missingRequiredField", true);
         }

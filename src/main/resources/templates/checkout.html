@@ -73,16 +73,22 @@
                     <div class="panel-body">
                         <button type="submit" class="btn btn-warning btn-block">Place Your Order</button>
                         <p style="font-size: smaller;">
-                            By placing your order, you agree to Alpine's Bookstore<a href="#">privacy</a> notice and <a href="#">conditions</a> of use.
+                            By placing your order, you agree to Alpine's Bookstore <a href="#">privacy</a> notice and <a href="#">conditions</a> of use.
                         </p>
                         <hr/>
                         <h3>Order Summary</h3>
                         <div class="row">
-                            <div class="col-xs-7 text-left">
-                                Total before tax:
-                            </div>
+                            <div class="col-xs-7 text-left">Total before tax:</div>
                             <div class="col-xs-5 text-right">
                                 $<span th:text="${shoppingCart.grandTotal}"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-7 text-left">Estimated tax:</div>
+                            <div class="col-xs-5 text-right">
+                                $<span th:with="tax=${shoppingCart.grandTotal*0.13}"
+                                       th:text="${#numbers.formatDecimal(tax, 0, 2)}"></span>
                             </div>
                         </div>
 
@@ -94,13 +100,13 @@
                                 <h3>
                                     <strong style="color: darkred;">$
                                         <span th:with="total=${shoppingCart.grandTotal+shoppingCart.grandTotal*0.13}"
-                                              th:text="${#numbers.formatDecimal(total, 0, 2}"></span>
+                                              th:text="${#numbers.formatDecimal(total, 0, 2)}"></span>
                                     </strong>
                                 </h3>
                             </div>
                         </div>
                         <div class="panel-footer">
-                            Shipping and handling haven't applied!
+                            Shipping and handling haven't applied yet!
                         </div>
                     </div>
                 </div>
@@ -139,7 +145,7 @@
                                                      ${userShipping.userShippingStateProvince}">
                                         </td>
                                         <td>
-                                            <a th:href="${/setShippingAddress(userShippingId=${userShipping.id})}">
+                                            <a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">
                                                 use this address
                                             </a>
                                         </td>
@@ -204,7 +210,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a data-toggele="collapse" data-parent="#accordion" class="btn btn-warning pull-right" href="#paymentInfo">Next</a>
+                                <a data-toggle="collapse" data-parent="#accordion" class="btn btn-warning pull-right" href="#paymentInfo">Next</a>
                             </div>
                         </div>
                     </div>
@@ -230,7 +236,7 @@
                                     <tr th:each="userPayment : ${userPaymentList}">
                                         <td th:text="${userPayment.cardName}"></td>
                                         <td>
-                                            <a th:href="${/setPaymentMethod(userPaymentId=${userPayment.id})}">use this payment</a>
+                                            <a th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">use this payment</a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -255,14 +261,14 @@
                                             <label for="cardHolder">* Cardholder Name:</label>
                                             <input type="text" class="form-control" id="cardHolder"
                                                 required="required" placeHolder="Card Holder Name"
-                                                th:name="holderName" th:value="${userPayment.holderName}" />
+                                                th:name="holderName" th:value="${payment.holderName}" />
                                         </div>
                                         <div class="form-group">
                                             <label for="cardNumber">* Card Number:</label>
                                             <div class="input-group">
                                                 <input type="tel" class="form-control" id="cardNumber"
                                                        required="required" placeHolder="Valid Card Number"
-                                                       th:name="cardNumber" th:value="${userPayment.cardNumber}" />
+                                                       th:name="cardNumber" th:value="${payment.cardNumber}" />
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-credit-card" aria-hidden="true"></i>
                                                 </span>
@@ -278,7 +284,7 @@
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <select class="form-control" name="expiryMonth"
-                                                            required="required" th:value="${userPayment.expiryMonth}">
+                                                            required="required" th:value="${payment.expiryMonth}">
                                                         <option disabled="disabled">-- Month --</option>
                                                         <option value="01">Jan (01)</option>
                                                         <option value="02">Feb (02)</option>
@@ -295,7 +301,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <select class="form-control" name="expiryYear" th:value="${userPayment.expiryYear}">
+                                                    <select class="form-control" name="expiryYear" th:value="${payment.expiryYear}">
                                                         <option disabled="disabled">-- Year --</option>
                                                         <option value="2017">2017</option>
                                                         <option value="2018">2018</option>
@@ -319,7 +325,7 @@
                                         <div class="form-group">
                                             <label for="cardCVC">CVC Code</label>
                                             <input id="cardCVC" type="tel" class="form-control" name="cvc"
-                                                   placeholder="CVC" th:name="cvc" th:value="${userPayment.cvc}" />
+                                                   placeholder="CVC" th:name="cvc" th:value="${payment.cvc}" />
                                         </div>
                                     </div>
                                 </div>
@@ -347,7 +353,7 @@
                                     <input
                                         type="text" class="form-control" id="billingAddress"
                                         placeholder="Street Address 2" th:name="billingAddressStreet2"
-                                        th:value="${billingAddress.userBillingStreet2}" />
+                                        th:value="${billingAddress.billingAddressStreet2}" />
                                 </div>
 
                                 <div class="row">
@@ -384,7 +390,7 @@
                                     </div>
                                 </div>
 
-                                <a data-toggele="collapse" data-parent="#accordion" class="btn btn-warning pull-right" href="#reviewItems">Next</a>
+                                <a data-toggle="collapse" data-parent="#accordion" class="btn btn-warning pull-right" href="#reviewItems">Next</a>
                             </div>
                         </div>
                     </div>
@@ -418,7 +424,7 @@
                                         <h4>Price</h4>
                                     </div>
                                     <div class="col-xs-2">
-                                        <h4>Qty</h4>
+                                        <h4>Quantity</h4>
                                     </div>
                                 </div>
 
@@ -439,7 +445,7 @@
                                             </a>
                                             <p th:if="${cartItem.book.inStockNumber&gt;10}" style="color: green;">In Stock</p>
                                             <p th:if="${cartItem.book.inStockNumber&lt;10 and cartItem.book.inStockNumber&gt;0}" style="color: green;">
-                                                Only <span th:text="${cartItem.book.inStockNumber}"></span>In Stock
+                                                Only <span th:text="${cartItem.book.inStockNumber}"></span> In Stock
                                             </p>
                                             <p th:if="${cartItem.book.inStockNumber==0}" style="color: darkred;">Product Unavailable</p>
                                             <button><a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">Delete</a></button>
@@ -457,7 +463,6 @@
                                     </div>
                                 </div>
 
-                                <hr />
                                 <hr />
                                 <h4 class="col-xs-12 text-right">
                                     <strong style="font-size: large;">

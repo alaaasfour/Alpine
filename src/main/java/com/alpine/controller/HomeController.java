@@ -163,7 +163,7 @@ public class HomeController {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("addNewCreditCard", true);
-        model.addAttribute("classActiveShipping", true);
+        model.addAttribute("classActiveBilling", true);
         model.addAttribute("listOfShippingAddresses", true);
 
         UserBilling userBilling = new UserBilling();
