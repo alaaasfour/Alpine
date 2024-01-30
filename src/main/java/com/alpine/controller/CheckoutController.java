@@ -32,6 +32,8 @@ public class CheckoutController {
     private BillingAddressService billingAddressService;
     @Autowired
     private UserShippingService userShippingService;
+    @Autowired
+    private UserPaymentService userPaymentService;
     @RequestMapping("/checkout")
     public String checkout(@RequestParam("id") Long cartId,
                            @RequestParam(value = "missingRequiredField", required = false)
@@ -145,9 +147,64 @@ public class CheckoutController {
             model.addAttribute("shippingAddress", shippingAddress);
             model.addAttribute("classActiveShipping", true);
 
+            if (userPaymentList.size() == 0) {
+                model.addAttribute("emptyPaymentList", true);
+            } else {
+                model.addAttribute("emptyPaymentList", false);
+            }
+            model.addAttribute("emptyShippingList", false);
+
+
             return "checkout";
         }
     }
 
+    @RequestMapping("/setPaymentMethod")
+    public String setPaymentMethod(@RequestParam("userPaymentId") Long userPaymentId, Principal principal, Model model) {
+        User user = userService.findByUsername(principal.getName());
+        UserPayment userPayment = userPaymentService.findById(userPaymentId);
+        UserBilling userBilling = userPayment.getUserBilling();
 
+        if (userPayment.getUser().getId() != user.getId()) {
+            return "badRequestPage";
+        } else {
+            paymentService.setByUserPayment(userPayment, payment);
+
+            List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
+            billingAddressService.setByUserBilling(userBilling, billingAddress);
+            model.addAttribute("shippingAddress", shippingAddress);
+            model.addAttribute("payment", payment);
+            model.addAttribute("billingAddress", billingAddress);
+            model.addAttribute("cartItemList", cartItemList);
+            model.addAttribute("shoppingCart", user.getShoppingCart());
+
+            List<String> stateList = StatesProvincesConstants.listOfUSStatesCode;
+            List<String> provinceList = StatesProvincesConstants.listOfCanadianProvincesCode;
+            List<String> countryList = new ArrayList<>();
+            countryList.add(StatesProvincesConstants.US);
+            countryList.add(StatesProvincesConstants.CA);
+            Collections.sort(stateList);
+            Collections.sort(provinceList);
+            model.addAttribute("stateList", stateList);
+            model.addAttribute("provinceList", provinceList);
+            model.addAttribute("countryList", countryList);
+
+            List<UserShipping> userShippingList = user.getUserShippingList();
+            List<UserPayment> userPaymentList = user.getUserPaymentList();
+            model.addAttribute("userShippingList", userShippingList);
+            model.addAttribute("userPaymentList", userPaymentList);
+            model.addAttribute("shippingAddress", shippingAddress);
+            model.addAttribute("classActivePayment", true);
+
+
+            model.addAttribute("emptyPaymentList", false);
+            if (userShippingList.size() == 0) {
+                model.addAttribute("emptyShippingList", true);
+            } else {
+                model.addAttribute("emptyShippingList", false);
+            }
+
+            return "checkout";
+        }
+    }
 }
