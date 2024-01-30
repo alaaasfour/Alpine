@@ -122,7 +122,7 @@ public class CheckoutController {
         } else {
             shippingAddressService.setByUserShipping(userShipping, shippingAddress);
             List<CartItem> cartItemList = cartItemService.findByShoppingCart(user.getShoppingCart());
-            BillingAddress billingAddress = new BillingAddress();
+
             model.addAttribute("shippingAddress", shippingAddress);
             model.addAttribute("payment", payment);
             model.addAttribute("billingAddress", billingAddress);
