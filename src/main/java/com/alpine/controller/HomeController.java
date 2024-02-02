@@ -137,7 +137,7 @@ public class HomeController {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
-        model.addAttribute("userShippingList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
         // model.addAttribute("orderList", user.orderList());
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveBilling", true);
