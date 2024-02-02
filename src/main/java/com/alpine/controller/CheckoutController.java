@@ -2,6 +2,7 @@ package com.alpine.controller;
 
 import com.alpine.domain.*;
 import com.alpine.service.*;
+import com.alpine.utility.MailConstructor;
 import com.alpine.utility.StatesProvincesConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class CheckoutController {
@@ -26,6 +28,8 @@ public class CheckoutController {
 
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private MailConstructor mailConstructor;
     @Autowired
     private UserService userService;
     @Autowired
@@ -166,7 +170,7 @@ public class CheckoutController {
         User user = userService.findByUsername(principal.getName());
         Order order = orderService.createOrder(shoppingCart, shippingAddress, billingAddress, payment, shippingMethod, user);
 
-        mailSender.send(mailConstructor);
+        mailSender.send(mailConstructor.constructOrderConfirmationEmail(user, order, Locale.ENGLISH));
         shoppingCartService.clearShoppingCart(shoppingCart);
 
         LocalDate today = LocalDate.now();

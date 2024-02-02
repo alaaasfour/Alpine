@@ -62,4 +62,7 @@ public class CartItemServiceImpl implements CartItemService {
         bookToCartItemRepository.deleteByCartItem(cartItem);
         cartItemRepository.delete(cartItem);
     }
+    public CartItem save(CartItem cartItem) {
+        return cartItemRepository.save(cartItem);
+    }
 }
