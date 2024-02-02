@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+<div class="page-top" style="width: 100%; height: 1px; background-color: lightgreen">
+</div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+					aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Alpine Bookstore</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="#">Home</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a th:href="@{/bookshelf}">Browse the Bookshelf</a></li>
+						<li><a href="#">Store Hours &#38; Location</a></li>
+						<li><a href="#">FAQ</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">Featured</li>
+						<li><a href="#">Best Sellers</a></li>
+						<li><a href="#">New Offers</a></li>
+					</ul>
+
+				</li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<form class="navbar-form">
+					<div class="form-group">
+						<input type="text" name="keyword" class="form-control" placeholder="Book Title" />
+					</div>
+					<button type="submit" class="btn btn-default">Search</button>
+				</form>
+				<li><a th:href="@{/shoppingCart/cart}">Shopping Cart <span class="sr-only">(current)</span></a></li>
+				<li class="active"><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
+				<li class="active"><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a></li>
+				<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a></li>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+	<!--/.container-fluid -->
+</nav>
+	<div class="container">
+		<div class="row" style="margin-bottom: -100px;">
+			<div class="col-xs-10">
+				<h2 class="section-headline"><span>Order Submission</span></h2>
+			</div>
+			<div class="col-xs-2">
+				<img src="/images/logo-resized.png" class="img-responsive" alt="logo" width="128" height="128"/>
+			</div>
+		</div>
+		<hr style="position:absolute; width:94%; height:6px; background-color: #333; z-index:-1; margin-top:33px;" />
+		<img class="img-responsive" src="/images/wood.jpeg" style="margin-top: 120px;" alt="wood"/>
+
+		<div class="row" style="margin-top: 10px;">
+			<div class="col-xs-12">
+				<div class="alert alert-success">
+					<h3>
+						<i class="fa fa-check" aria-hidden="true" style="color: limegreen;"></i>
+						Thank you, your order has been placed!
+					</h3>
+					<h4>
+						The estimated delivery date is <span th:text="${estimatedDeliveryDate}"></span>
+					</h4>
+				</div>
+
+				<h3>List of Items</h3>
+				<div class="row" th:each="cartItem : ${cartItemList}">
+					<hr />
+					<div class="col-xs-2"></div>
+					<div class="col-xs-2">
+
+						<a th:href="@{/bookDetail(id=${cartItem.book.id})}">
+							<img class="img-responsive shelf-book" th:src="#{adminPath}+@{/images/books/}+${cartItem.book.id}+'.png'" style="width: 70px;" />
+						</a>
+					</div>
+					<div class="col-xs-6">
+						<div style="margin-left: 50px;">
+							<a th:href="@{/bookDetail?id=}+${cartItem.book.id}">
+								<h4 th:text="${cartItem.book.title}"></h4>
+							</a>
+						</div>
+					</div>
+
+					<div class="col-xs-2">
+						<h5 style="color: #db3208; font-size: large;">
+							$<span th:text="${cartItem.book.ourPrice}" th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>

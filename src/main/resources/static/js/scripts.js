@@ -7,7 +7,7 @@ function checkBillingAddress() {
 }
 function checkPasswordMatch() {
     var password = $("#txtNewPassword").val();
-    var confirmPassword = $("#textConfirmPassword").val();
+    var confirmPassword = $("#txtConfirmPassword").val();
 
     if (password == "" && confirmPassword == "") {
         $("#checkPasswordMatch").html("");
