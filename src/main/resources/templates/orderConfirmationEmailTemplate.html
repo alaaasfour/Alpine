@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Alpine Bookstore</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/non-responsive.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="icon" href="/images/logo.png" />
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-
+<p>Dear <span th:text="${user.firstName}"></span>,</p>
+<br/>
+<p>Thank you for shopping from our bookstore. We hope you had a good time with our service!</p>
+<p>Your order number is: <strong>#<span th:text="${order.id}"></span></strong>. Here is your order details:</p>
+<h2>Order Details for Purchase #<span th:text="${order.id}"></span></h2>
+<table>
+    <tr>
+        <th>Billing Details</th>
+        <th>Payment Information</th>
+        <th>Shipping Address</th>
+    </tr>
+    <tr>
+        <td>
+            <span th:text="${order.billingAddress.billingAddressName}"></span><br/>
+            <span th:text="${order.billingAddress.billingAddressStreet1}+' '+${order.billingAddress.billingAddressStreet2}"></span><br/>
+            <span th:text="${order.billingAddress.billingAddressCity}"></span><br/>
+            <span th:text="${order.billingAddress.billingAddressStateProvince}"></span><br/>
+            <span th:text="${order.billingAddress.billingAddressZipPostalCode}"></span><br/>
+            <span th:text="${order.billingAddress.billingAddressCountry}"></span>
+        </td>
+        <td>
+            <span th:text="${order.payment.holderName}"></span><br/>
+            <span th:text="${order.payment.type}"></span><br/>
+            <span th:text="${order.payment.cardNumber}"></span><br/>
+            <span th:text="${order.payment.expiryMonth}"></span><br/>
+            <span th:text="${order.payment.expiryYear}"></span>
+        </td>
+        <td>
+            <span th:text="${order.shippingAddress.shippingAddressName}"></span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressStateProvince}"></span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressZipPostalCode}"></span><br/>
+            <span th:text="${order.shippingAddress.shippingAddressCountry}"></span>
+        </td>
+    </tr>
+</table>
+<h3><strong>Order Summary</strong></h3>
+<table>
+    <thead>
+        <tr>
+            <td><strong>Item Name</strong></td>
+            <td class="text-center"><strong>Item Price</strong></td>
+            <td class="text-center"><strong>Item Quantity</strong></td>
+            <td class="text-right"><strong>Total</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="cartItem : ${cartItemList}">
+            <td><span th:data-th-text="#{cartItem.book.title}"></span></td>
+            <td class="text-center" th:data-th-text="#{cartItem.book.ourPrice}"></td>
+            <td class="text-center" th:data-th-text="#{cartItem.book.qty}"></td>
+            <td class="text-right" th:data-th-text="#{cartItem.book.subTotal}"></td>
+        </tr>
+        <tr>
+            <td class="emptyrow"></td>
+            <td class="emptyrow"></td>
+            <td class="emptyrow text-center"><strong>Tax</strong></td>
+            <td class="emptyrow text-right" th:data-th-text="${#numbers.formatDecimal(order.orderTotal*0.13,0,2)}"></td>
+        </tr>
+        <tr>
+            <td class="highrow"></td>
+            <td class="highrow"></td>
+            <td class="highrow text-center"><strong>Subtotal</strong></td>
+            <td class="highrow text-right" th:data-th-text="${order.orderTotal}"></td>
+        </tr>
+    </tbody>
+</table>
 </body>
 </html>
