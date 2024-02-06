@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/bookshelf",
             "/bookDetails",
             "/hours",
-            "/faq"
+            "/faq",
+            "/searchByCategory"
     };
     @Override
     protected void configure(HttpSecurity http) throws Exception {
