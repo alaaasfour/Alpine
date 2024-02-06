@@ -157,7 +157,7 @@
                 </div>
 
                 <!-- Order Information -->
-                <div class="tab-pane fade" id="tab-1" th:classappend="${classActiveOrder}? 'in active'">
+                <div class="tab-pane fade" id="tab-1" th:classappend="${classActiveOrders}? 'in active'">
                     <div class="panel-group">
                         <div class="panel panel-default" style="border: none;">
                             <div class="panel-body" style="background-color: #ededed; margin-top: 20px;">
@@ -220,7 +220,7 @@
                                                         <div class="panel-heading"><strong>Shipping Details</strong></div>
                                                         <div class="panel-body">
                                                             <span th:text="${order.shippingAddress.shippingAddressName}"></span><br/>
-                                                            <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.billingAddressStreet2}"></span><br/>
+                                                            <span th:text="${order.shippingAddress.shippingAddressStreet1}+' '+${order.shippingAddress.shippingAddressStreet2}"></span><br/>
                                                             <span th:text="${order.shippingAddress.shippingAddressCity}"></span><br/>
                                                             <span th:text="${order.shippingAddress.shippingAddressStateProvince}"></span><br/>
                                                             <span th:text="${order.shippingAddress.shippingAddressZipPostalCode}"></span><br/>
