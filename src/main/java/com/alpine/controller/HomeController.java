@@ -60,6 +60,16 @@ public class HomeController {
         return "myAccount";
     }
 
+    @RequestMapping("/hours")
+    public String hours() {
+        return "hours";
+    }
+
+    @RequestMapping("/faq")
+    public String faq() {
+        return "faq";
+    }
+
     @RequestMapping("/bookshelf")
     public String bookshelf(Model model) {
         List<Book> bookList = bookService.findAll();
@@ -466,7 +476,7 @@ public class HomeController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         model.addAttribute("user", user);
         model.addAttribute("classActiveEdit", true);
-        model.addAttribute("orderList", user.getOrderList());
+
         return "myProfile";
     }
 
@@ -512,6 +522,8 @@ public class HomeController {
         model.addAttribute("updateSuccess", true);
         model.addAttribute("user", currentUser);
         model.addAttribute("classActiveEdit", true);
+        model.addAttribute("listOfShippingAddresses", true);
+        model.addAttribute("listOfCreditCards", true);
 
         UserDetails userDetails = userSecurityService.loadUserByUsername(currentUser.getUsername());
         Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());

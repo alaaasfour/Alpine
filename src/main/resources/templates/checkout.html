@@ -354,7 +354,7 @@
                                         <div class="form-group">
                                             <label for="billingStateProvince">* State/Province</label>
                                             <select id="billingStateProvince" class="form-control billingAddress"
-                                                    th:name="billingStateProvince"
+                                                    th:name="billingAddressStateProvince"
                                                     th:value="${billingAddress.billingAddressStateProvince}"
                                                     required="required">
                                                 <option value="" disabled="disabled" selected="selected">Select an Option</option>
@@ -476,7 +476,7 @@
 
 </div>
 <!-- end of container -->
-
+<div th:replace="common/header :: footer"></div>
 
 
 <!-- Bootstrap core JavaScript

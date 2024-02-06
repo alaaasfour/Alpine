@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="common/header :: common-header"></head>
+
+<body>
+<div class="page-top" style="width: 100%; height: 1px; background-color: lightgreen">
+</div>
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Alpine Bookstore</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/bookshelf}">Browse the Bookshelf</a></li>
+                        <li><a th:href="@{/hours}">Store Hours &#38; Location</a></li>
+                        <li><a class="active" th:href="@{/faq}">FAQ</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Featured</li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">New Offers</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" name="keyword" class="form-control" placeholder="Book Title" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                <li><a th:href="@{/shoppingCart/cart}">Shopping Cart <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
+                <li class="active"><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Log out</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+        <div class="col-xs-10">
+            <h2 class="section-headline"><span>User Account</span></h2>
+        </div>
+        <div class="col-xs-2">
+            <img src="/images/logo-resized.png" class="img-responsive" alt="logo" width="128" height="128"/>
+        </div>
+    </div>
+    <hr style="position:absolute; width:94%; height:6px; background-color: #333; z-index:-1; margin-top:33px;" />
+    <img class="img-responsive" src="/images/wood.jpeg" style="margin-top: 120px;" alt="wood"/>
+
+    <div class="row" style="margin-top: 120px;">
+        <div class="col-xs-9 col-xs-offset-3">
+            <h3>Shopping</h3>
+            <hr/>
+            <h4 class="question">Q: How do I place an order?</h4>
+            <p>A:&nbsp;First you need to set up an account, once that is created you are ready to place an order.</p>
+            <h4 class="question">Q: How do I set up an account?&nbsp;</h4>
+            <p>A: Click on the login button in the upper right hand corner of the main page and then click on create an
+                account.</p>
+            <h4 class="question">Q: How long does it take to process and ship orders?</h4>
+            <p>A: Please allow 1 - 3 business days (Monday-Friday) for order processing regardless of the shipping
+                method chosen. Once shipped you should receive your order within 2 - 10 business days. Please note that
+                2 day and Overnight services refer to business days (Monday - Friday).
+            </p>
+            <h4 class="question">Q: Are all of the items guaranteed in stock?</h4>
+            <p>A: We try to update the website as often as possible to reflect out of stock conditions. However, the
+                ability to order an item does not guarantee that it will be in stock when your order is processed. You
+                will be notified if an order is not available.
+            </p>
+            <h4 class="question">Q: Why can't I choose the size and color I want?</h4>
+            <p>A:&nbsp;If you are unable to select a specific size or color, it typically means that the item is out of
+                stock. Try checking back in 2 - 3 weeks to see if your size or color is available.
+            </p>
+            <h4 class="question">Q: I can't find a specific item on the website, are there items available that are not listed on the
+                website?</h4>
+            <p>A:&nbsp;The items that are currently shown on our website represent what is currently available to view
+                and order online. There is a wider selection of merchandise available at the UVM Bookstore and the
+                Catamount Store. Please visit our stores when you are in the Burlington area.
+            </p>
+            <h4 class="question">Q: How can I check the status of my order?</h4>
+            <p>A: If you have registered for an account at the UVM Bookstore, click on "My Account" and login with your
+                email address and password. You can view the status of any orders that were made while you were signed
+                in. You can also contact us at&nbsp;1.800.331.7305 with your name, order number, and a request for
+                status of your order. Our office hours are Monday - Friday 8am -4:30pm EST
+            </p>
+            <h4 class="question">Q: How can I cancel or change my order?</h4>
+            <p>A:&nbsp;You can cancel your order or make a change to it by contacting us at 1.999.999.9999 as soon as
+                possible after your order is placed with your name, order number, and a request for cancellation or a
+                description of the requested change. Our office hours are Monday Friday 8am 4:30pm. We will do our best
+                to cancel or modify your order, but we will not be able to complete the cancellation if your order has
+                been processed or shipped.
+            </p>
+
+            <h3>Shipping&nbsp;</h3>
+            <hr />
+            <p>The UVM Bookstore is proud to offer you competitive shipping rates. All of our shipments are
+                professionally packed to ensure the safety of your items in route.</p>
+            <h4 class="question">Q: How much is the shipping charge on orders?</h4>
+            <p>A: The shipping charge depends on the total amount of the merchandise ordered as well as the shipping
+                method chosen. There are some items that incur additional charges such as diploma frames $19.99 for an
+                oversized box and maple syrup $1.00 for double-boxing. The rate for chairs and rockers is $35.00 for
+                shipments east of the Mississippi and $45.00 west of the Mississippi.</p>
+            <h4 class="question">Q. What is your shipping method?</h4>
+            <p>A: We ship UPS, FedEx or US mail .
+            </p>
+            <h4 class="question">Q: When will I receive my order?</h4>
+            <p>A: On average, your order will be received in 7 - 10 working days. During August and January, delivery
+                time may take longer.&nbsp;</p>
+        </div>
+    </div>
+
+</div>
+<!-- end of container -->
+<div th:replace="common/header :: footer"></div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
+</body>
+
+</html>

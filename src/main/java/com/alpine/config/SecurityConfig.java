@@ -35,7 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/forgetPassword",
             "/fonts/**",
             "/bookshelf",
-            "/bookDetails"
+            "/bookDetails",
+            "/hours",
+            "/faq"
     };
     @Override
     protected void configure(HttpSecurity http) throws Exception {
