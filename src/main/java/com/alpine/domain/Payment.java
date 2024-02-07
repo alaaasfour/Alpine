@@ -14,18 +14,23 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the payment
     private Long id;
-    private String type;
-    private String cardName;
-    private String cardNumber;
-    private int expiryMonth;
-    private int expiryYear;
-    private int cvc;
-    private String holderName;
+    private String type; // Type of payment (e.g., credit card, PayPal)
+    private String cardName; // Name on the payment card
+    private String cardNumber; // Card number
+    private int expiryMonth; // Expiry month of the card
+    private int expiryYear; // Expiry year of the card
+    private int cvc; // Card verification code
+    private String holderName; // Name of the card holder
     @OneToOne
+    // Order associated with the payment
     private Order order;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
+    // User billing information associated with the payment
     private UserBilling userBilling;
+
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
