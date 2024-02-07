@@ -10,24 +10,31 @@ import java.util.List;
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the CartItem entity
     private Long id;
     private int qty;
+    // Subtotal for this cart item
     private BigDecimal subtotal;
     @OneToOne
+    // The associated book entity
     private Book book;
 
     @OneToMany(mappedBy = "cartItem")
     @JsonIgnore
+    // List of associations between this cart item and books
     private List<BookToCartItem> bookToCartItemList;
 
     @ManyToOne
     @JoinColumn(name="shopping_cart_id")
+    // The shopping cart to which this cart item belongs
     private ShoppingCart shoppingCart;
 
     @ManyToOne
     @JoinColumn(name="order_id")
+    // The order associated with this cart item (if any)
     private Order order;
 
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
