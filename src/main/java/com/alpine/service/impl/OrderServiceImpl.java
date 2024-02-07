@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CartItemService cartItemService;
 
+    // Creates an order with the provided details.
     public synchronized Order createOrder(ShoppingCart shoppingCart,
                              ShippingAddress shippingAddress,
                              BillingAddress billingAddress,
@@ -51,6 +52,8 @@ public class OrderServiceImpl implements OrderService {
         return order;
 
     }
+
+    // Retrieves an order by its ID.
     public Order findOne(Long id) {
         Optional<Order> optionalOrder = orderRepository.findById(id);
         return optionalOrder.orElse(null);
