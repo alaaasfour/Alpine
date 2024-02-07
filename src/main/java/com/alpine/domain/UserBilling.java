@@ -6,18 +6,21 @@ import javax.persistence.*;
 public class UserBilling {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the user billing address
     private Long id;
-    private String userBillingName;
-    private String userBillingStreet1;
-    private String userBillingStreet2;
-    private String userBillingCity;
-    private String userBillingStateProvince;
-    private String userBillingCountry;
-    private String userBillingZipPostalCode;
+    private String userBillingName; // Name associated with the billing address
+    private String userBillingStreet1; // First line of the billing address
+    private String userBillingStreet2; // Second line of the billing address (optional)
+    private String userBillingCity; // City of the billing address
+    private String userBillingStateProvince; // State or province of the billing address
+    private String userBillingCountry; // Country of the billing address
+    private String userBillingZipPostalCode; // Zip or postal code of the billing address
 
     @OneToOne(cascade = CascadeType.ALL)
+    // User payment associated with this billing address
     private UserPayment userPayment;
 
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
