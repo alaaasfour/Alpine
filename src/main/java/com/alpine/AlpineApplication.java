@@ -10,13 +10,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.alpine.domain.User;
-
 import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
 public class AlpineApplication implements CommandLineRunner {
-
 	@Autowired
 	private UserService userService;
 	/**
