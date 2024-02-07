@@ -17,9 +17,13 @@ public class CartItemServiceImpl implements CartItemService {
     private CartItemRepository cartItemRepository;
     @Autowired
     private BookToCartItemRepository bookToCartItemRepository;
+
+    // Retrieves a list of cart items associated with the given shopping cart.
     public List<CartItem> findByShoppingCart(ShoppingCart shoppingCart) {
         return cartItemRepository.findByShoppingCart(shoppingCart);
     }
+
+    // Updates the given cart item with the updated quantity and subtotal.
     public CartItem updateCartItem(CartItem cartItem) {
         BigDecimal bigDecimal = new BigDecimal(cartItem.getBook().getOurPrice()).multiply(new BigDecimal(cartItem.getQty()));
         bigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -27,6 +31,8 @@ public class CartItemServiceImpl implements CartItemService {
         cartItemRepository.save(cartItem);
         return cartItem;
     }
+
+    // Adds a book to the user's cart or updates the quantity if the book is already in the cart.
     public CartItem addBookToCartItem(Book book, User user, int qty) {
         List<CartItem> cartItemList = findByShoppingCart(user.getShoppingCart());
 
@@ -54,17 +60,25 @@ public class CartItemServiceImpl implements CartItemService {
 
         return cartItem;
     }
+
+    // Retrieves a cart item by its ID.
     public CartItem findById(Long id) {
         Optional<CartItem> optionalCartItem = cartItemRepository.findById(id);
         return optionalCartItem.orElse(null);
     }
+
+    // Removes the specified cart item.
     public void removeCartItem(CartItem cartItem) {
         bookToCartItemRepository.deleteByCartItem(cartItem);
         cartItemRepository.delete(cartItem);
     }
+
+    // Saves the specified cart item.
     public CartItem save(CartItem cartItem) {
         return cartItemRepository.save(cartItem);
     }
+
+    // Retrieves a list of cart items associated with the specified order.
     public List<CartItem> findByOrder(Order order) {
         return cartItemRepository.findByOrder(order);
     }
