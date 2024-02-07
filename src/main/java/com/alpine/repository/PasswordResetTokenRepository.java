@@ -10,10 +10,14 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.stream.Stream;
 
 public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
+    // Method to find a PasswordResetToken by its token
     PasswordResetToken findByToken(String token);
+    // Method to find a PasswordResetToken by its associated user
     PasswordResetToken findByUser(User user);
+    // Method to find all PasswordResetTokens with expiry dates less than the given date
     Stream<PasswordResetToken> findAllByExpiryDateLessThan(Date now);
 
+    // Custom query to delete all expired PasswordResetTokens
     @Modifying
     @Query("delete from PasswordResetToken t where t.expiryDate <= ?1")
     void deleteAllExpiredSince(Date now);
