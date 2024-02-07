@@ -12,10 +12,14 @@ import java.util.Optional;
 public class UserShippingServiceImpl implements UserShippingService {
     @Autowired
     private UserShippingRepository userShippingRepository;
+
+    // Retrieves a user shipping information by its ID.
     public UserShipping findById(Long id) {
         Optional<UserShipping> optionalUserShipping = userShippingRepository.findById(id);
         return optionalUserShipping.orElse(null);
     }
+
+    // Removes a user shipping information by its ID.
     public void removeById(Long id) {
         userShippingRepository.deleteById(id);
     }
