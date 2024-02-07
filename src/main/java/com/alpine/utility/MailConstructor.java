@@ -22,6 +22,7 @@ public class MailConstructor {
     @Autowired
     private TemplateEngine templateEngine;
 
+    // Construct email for resetting password
     public SimpleMailMessage constructResetTokenEmail (
             String contextPath, Locale locale, String token, User user, String password
         ) {
@@ -35,6 +36,7 @@ public class MailConstructor {
         return email;
     }
 
+    // Construct email for order confirmation
     public MimeMessagePreparator constructOrderConfirmationEmail (User user, Order order, Locale locale) {
         Context context = new Context();
         context.setVariable("order", order);
