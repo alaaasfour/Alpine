@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class ShippingAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the shipping address
     private Long id;
     private String ShippingAddressName;
     private String ShippingAddressStreet1;
@@ -16,7 +17,10 @@ public class ShippingAddress {
     private String ShippingAddressZipPostalCode;
 
     @OneToOne
+    // Order associated with the shipping address
     private Order order;
+
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }

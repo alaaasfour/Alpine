@@ -11,7 +11,6 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Payment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     // Unique identifier for the payment
