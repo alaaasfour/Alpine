@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ShippingAddressServiceImpl implements ShippingAddressService {
+    // Sets the shipping address based on the user shipping information.
     public ShippingAddress setByUserShipping(UserShipping userShipping, ShippingAddress shippingAddress) {
         shippingAddress.setShippingAddressName(userShipping.getUserShippingName());
         shippingAddress.setShippingAddressStreet1(userShipping.getUserShippingStreet1());
