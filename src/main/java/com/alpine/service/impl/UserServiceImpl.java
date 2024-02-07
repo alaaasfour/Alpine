@@ -18,7 +18,6 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
@@ -31,28 +30,40 @@ public class UserServiceImpl implements UserService {
     private UserShippingRepository userShippingRepository;
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
+
+    // Retrieves the password reset token associated with the given token string.
     @Override
     public PasswordResetToken getPasswordResetToken(final String token){
         return passwordResetTokenRepository.findByToken(token);
     }
+
+    // Creates a password reset token for the specified user.
     @Override
     public void createPasswordResetTokenForUser(final User user, final String token){
         final PasswordResetToken myToken = new PasswordResetToken(token, user);
         passwordResetTokenRepository.save(myToken);
     }
+
+    // Retrieves a user by their username.
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    // Retrieves a user by their email address.
     @Override
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    // Retrieves a user by their ID.
     @Override
     public User findById(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.orElse(null);
     }
+
+    // Creates a new user with the provided user data and user roles.
     @Override
     @Transactional
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
@@ -77,6 +88,8 @@ public class UserServiceImpl implements UserService {
         }
         return localUser;
     }
+
+    // Saves or updates the given user.
     @Override
     public User save(User user) {
         return userRepository.save(user);

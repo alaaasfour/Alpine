@@ -16,6 +16,7 @@ public interface UserService {
     User findByUsername(String username);
     User findByEmail(String email);
     User findById(Long id);
+    // Creates a new user.
     User createUser(User user, Set<UserRole> userRoles) throws Exception;
     User save(User user);
     void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
