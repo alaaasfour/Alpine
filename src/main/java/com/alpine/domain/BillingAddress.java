@@ -21,7 +21,10 @@ public class BillingAddress {
     private String BillingAddressCountry;
     private String BillingAddressZipPostalCode;
     @OneToOne
+    // Associated order for the billing address
     private Order order;
+
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
