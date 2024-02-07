@@ -1,3 +1,7 @@
+/**
+ * Configuration class responsible for setting up security configurations for the Alpine Book Store application.
+ * This class extends WebSecurityConfigurerAdapter to provide custom security configurations.
+ */
 package com.alpine.config;
 import com.alpine.service.impl.UserSecurityService;
 import com.alpine.utility.SecurityUtility;
@@ -20,9 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private Environment env;
     @Autowired
     private UserSecurityService userSecurityService;
+    /**
+     * Configures the password encoder to be used for encoding passwords.
+     * @return BCryptPasswordEncoder instance for password encoding.
+     */
     private BCryptPasswordEncoder passwordEncoder() {
         return SecurityUtility.passwordEncoder();
     }
+
+    // Array of public matchers for permit all access
     private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
             "/js/**",
@@ -41,6 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/searchByCategory",
             "/searchBook"
     };
+
+    /**
+     * Configures HTTP security settings for the application.
+     * @param http HttpSecurity object to configure security settings.
+     * @throws Exception Exception if any error occurs during configuration.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -57,6 +73,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe();
     }
+
+    /**
+     * Configures global authentication manager to use custom user details service and password encoder.
+     * @param auth AuthenticationManagerBuilder object to configure authentication manager.
+     * @throws Exception Exception if any error occurs during configuration.
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());

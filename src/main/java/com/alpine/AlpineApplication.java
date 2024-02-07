@@ -19,11 +19,19 @@ public class AlpineApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserService userService;
-
+	/**
+	 * The main method to start the Alpine Book Store application.
+	 * @param args Command-line arguments.
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AlpineApplication.class, args);
 	}
-
+	/**
+	 * Method executed after the application context is loaded.
+	 * It creates initial user data for testing purposes.
+	 * @param args Command-line arguments.
+	 * @throws Exception Exception if any error occurs during user creation.
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 		User user1 = new User();
@@ -37,7 +45,6 @@ public class AlpineApplication implements CommandLineRunner {
 		role1.setRoleId(1);
 		role1.setName("ROLE_USER");
 		userRoles.add(new UserRole(user1, role1));
-
 		userService.createUser(user1, userRoles);
 	}
 }
