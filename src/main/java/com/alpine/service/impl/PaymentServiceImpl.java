@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
+    // Sets the payment details based on the user payment information.
     public Payment setByUserPayment(UserPayment userPayment, Payment payment) {
         payment.setType(userPayment.getType());
         payment.setHolderName(userPayment.getHolderName());
