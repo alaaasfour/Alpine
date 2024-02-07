@@ -10,14 +10,19 @@ import java.util.List;
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the shopping cart
     private Long id;
     private BigDecimal GrandTotal;
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
+    // List of items in the shopping cart
     private List<CartItem> cartItemList;
 
     @OneToOne(cascade = CascadeType.ALL)
+    // User associated with the shopping cart
     private User user;
+
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
