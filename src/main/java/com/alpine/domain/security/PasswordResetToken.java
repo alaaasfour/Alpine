@@ -8,30 +8,29 @@ import java.util.Date;
 
 @Entity
 public class PasswordResetToken {
+    // Token expiration time in minutes
     private static final int EXPIRATION = 60 * 24;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String token;
-
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable=false, name="user_id")
     private User user;
-
     private Date expiryDate;
 
-
-
+    // Constructor to initialize the token and user, setting the expiry date
     public PasswordResetToken(final String token, final User user) {
         super ();
-
         this.token = token;
         this.user = user;
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
+
+    // Default constructor required by JPA
     public PasswordResetToken() {}
+
+    // Method to calculate the expiry date based on the current time and the expiry time in minutes
     private Date calculateExpiryDate (final int expiryTimeInMinutes) {
         final Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(new Date().getTime());
@@ -39,47 +38,40 @@ public class PasswordResetToken {
         return new Date(cal.getTime().getTime());
     }
 
+    // Method to update the token and recalculate the expiry date
     public void updateToken(final String token) {
         this.token = token;
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getToken() {
         return token;
     }
-
     public void setToken(String token) {
         this.token = token;
     }
-
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
-
     public Date getExpiryDate() {
         return expiryDate;
     }
-
     public void setExpiryDate(Date expiryDate) {
         this.expiryDate = expiryDate;
     }
-
     public static int getExpiration() {
         return EXPIRATION;
     }
-
     @Override
     public String toString() {
         return "PasswordResetToken{" +
