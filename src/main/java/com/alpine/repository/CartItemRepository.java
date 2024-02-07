@@ -10,6 +10,8 @@ import java.util.List;
 
 @Transactional
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
+    // Finds all cart items associated with the given shopping cart.
     List<CartItem> findByShoppingCart(ShoppingCart shoppingCart);
+    // Finds all cart items associated with the given order.
     List<CartItem> findByOrder(Order order);
 }
