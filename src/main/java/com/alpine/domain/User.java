@@ -17,26 +17,34 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
+    // Unique identifier for the user
     private Long id;
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
+    private String username; // User's username for authentication
+    private String password; // User's password for authentication
+    private String firstName; // User's first name
+    private String lastName; // User's last name
     @Column(name = "email", nullable = false, updatable = false)
-    private String email;
-    private String phone;
-    private boolean enabled = true;
+    private String email; // User's email address
+    private String phone; // User's phone number
+    private boolean enabled = true; // Indicates whether the user account is enabled
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    // User's shopping cart
     private ShoppingCart shoppingCart;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    // List of user's shipping addresses
     private List<UserShipping> userShippingList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    // List of user's payment methods
     private List<UserPayment> userPaymentList;
     @OneToMany(mappedBy = "user")
+    // List of user's orders
     private List<Order> orderList;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
+    // Set of user's roles
     private Set<UserRole> userRoles = new HashSet<>();
+
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
