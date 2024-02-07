@@ -15,6 +15,7 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    // Retrieves all active books.
     public List<Book> findAll() {
         List<Book> bookList = (List<Book>) bookRepository.findAll();
         List<Book> activeBookList = new ArrayList<>();
@@ -26,15 +27,19 @@ public class BookServiceImpl implements BookService {
         return activeBookList;
     }
 
+    // Retrieves a book by its ID.
     public Book findOne(Long id) {
         Optional<Book> optionalBook = bookRepository.findById(id);
         return optionalBook.orElse(null);
     }
+
+    // Saves a book.
     @Override
     public Book save(Book book) {
         return bookRepository.save(book);
     }
 
+    // Retrieves all active books belonging to a specific category.
     public List<Book> findByCategory(String category) {
         List<Book> bookList = bookRepository.findByCategory(category);
         List<Book> activeBookList = new ArrayList<>();
@@ -47,6 +52,7 @@ public class BookServiceImpl implements BookService {
         return activeBookList;
     }
 
+    // Performs a blurry search based on the title of the books and retrieves all active matches.
     public List<Book> blurrySearch(String title) {
         List<Book> bookList = bookRepository.findByTitleContaining(title);
         List<Book> activeBookList = new ArrayList<>();
@@ -56,7 +62,6 @@ public class BookServiceImpl implements BookService {
                 activeBookList.add(book);
             }
         }
-
         return activeBookList;
     }
 }
