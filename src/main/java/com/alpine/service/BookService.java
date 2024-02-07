@@ -10,5 +10,6 @@ public interface BookService {
     Book findOne(Long id);
     Book save(Book book);
     List<Book> findByCategory(String category);
+    List<Book> blurrySearch(String title);
 }
 
