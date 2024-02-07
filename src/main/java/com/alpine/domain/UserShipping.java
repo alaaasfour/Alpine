@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class UserShipping {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the user shipping address
     private Long id;
     private String userShippingName;
     private String userShippingStreet1;
@@ -14,12 +15,14 @@ public class UserShipping {
     private String userShippingStateProvince;
     private String userShippingCountry;
     private String userShippingZipPostalCode;
-    private boolean userShippingDefault;
+    private boolean userShippingDefault; // Flag indicating if this is the default shipping address
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    // User associated with this shipping address
     private User user;
 
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
