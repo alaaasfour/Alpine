@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class UserPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // Unique identifier for the user payment
     private Long id;
     private String type;
     private String cardName;
@@ -14,14 +15,17 @@ public class UserPayment {
     private int expiryYear;
     private int cvc;
     private String holderName;
-    private boolean defaultPayment;
+    private boolean defaultPayment; // Flag indicating if this is the default payment method
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    // User associated with this payment method
     private User user;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
+    // Billing address associated with this payment method
     private UserBilling userBilling;
 
+    // Getter and setter methods for each attribute
     public Long getId() {
         return id;
     }
@@ -80,7 +84,6 @@ public class UserPayment {
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
