@@ -7,5 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface BookToCartItemRepository extends CrudRepository<BookToCartItem, Long> {
+    // Deletes the BookToCartItem entries associated with the given CartItem.
     void deleteByCartItem(CartItem cartItem);
 }
