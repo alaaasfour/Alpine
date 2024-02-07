@@ -1,7 +1,9 @@
 # Alpine Bookstore 📚
 
 ## Overview 🚀
-Alpine Bookstore is an e-commerce web application designed to sell books online. It provides users with features to browse books, add them to the shopping cart, make payments, and manage their orders and account details.
+Alpine Bookstore is an e-commerce web application designed to sell books online. This Application has 2 portals:
+- **User Portal:** It provides users with features to browse books, add them to the shopping cart, make payments, and manage their orders and account details.
+- **Admin Portal:** It allows the admin to manage the available products and users.
 
 ## Features ✨
 - **User Authentication 🔐**: Users can sign up, log in, and log out securely.
