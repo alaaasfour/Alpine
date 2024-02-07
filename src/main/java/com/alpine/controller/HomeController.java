@@ -49,27 +49,26 @@ public class HomeController {
     private CartItemService cartItemService;
     @Autowired
     private OrderService orderService;
+
+    // Mapping for the root URL, it returns the index page.
     @RequestMapping("/")
     public String index() {
         return "index";
     }
-
+    // Mapping for the login URL, it returns the login page for the users to login
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("classActiveLogin", true);
         return "myAccount";
     }
-
     @RequestMapping("/hours")
     public String hours() {
         return "hours";
     }
-
     @RequestMapping("/faq")
     public String faq() {
         return "faq";
     }
-
     @RequestMapping("/bookshelf")
     public String bookshelf(Model model, Principal principal) {
         if(principal != null) {
@@ -98,6 +97,8 @@ public class HomeController {
 
         return "bookDetails";
     }
+
+    // Method for handling password reset functionality
     @RequestMapping("/forgetPassword")
     public String forgetPassword(HttpServletRequest request, @ModelAttribute("email") String email, Model model) {
         model.addAttribute("classActiveForgetPassword", true);
@@ -119,6 +120,7 @@ public class HomeController {
         return "myAccount";
     }
 
+    // Method for handling user profile management
     @RequestMapping("/myProfile")
     public String myProfile(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
@@ -417,6 +419,7 @@ public class HomeController {
         }
     }
 
+    // Method for handling new user registration
     @RequestMapping(value = "/newUser", method = RequestMethod.POST)
     public String newUserPost(
             HttpServletRequest request,
@@ -569,10 +572,7 @@ public class HomeController {
             model.addAttribute("classActiveOrders", true);
             model.addAttribute("listOfCreditCards", true);
             model.addAttribute("displayOrderDetails", true);
-
-
             return "myProfile";
         }
     }
-
 }
