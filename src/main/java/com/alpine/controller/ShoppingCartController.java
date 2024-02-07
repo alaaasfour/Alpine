@@ -31,22 +31,28 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
     @Autowired
     private BookService bookService;
+
+    // Method to display the shopping cart
     @RequestMapping("/cart")
     public String shoppingCart(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         ShoppingCart shoppingCart = user.getShoppingCart();
 
+        // Retrieve cart items associated with the shopping cart
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
+        // Update the shopping cart total
         shoppingCartService.updateShoppingCart(shoppingCart);
+        // Add cart items and shopping cart information to the model
         model.addAttribute("cartItemList", cartItemList);
         model.addAttribute("shoppingCart", shoppingCart);
-
+        // Add tax rates to the model
         List<String> taxList = TaxRateConstants.listOfTaxRates;
         model.addAttribute("taxList", taxList);
 
         return "shoppingCart";
     }
 
+    // Method to add an item to the shopping cart
     @RequestMapping("/addItem")
     public String addItem(
             @ModelAttribute("book") Book book,
@@ -56,20 +62,24 @@ public class ShoppingCartController {
         User user = userService.findByUsername(principal.getName());
         book = bookService.findOne(book.getId());
 
+        // Check if the requested quantity exceeds available stock
         if (Integer.parseInt(qty) > book.getInStockNumber()) {
             model.addAttribute("notEnoughStock", true);
             return "forward:/bookDetails?id="+book.getId();
         }
 
+        // Add the book to the cart item
         CartItem cartItem = cartItemService.addBookToCartItem(book, user, Integer.parseInt(qty));
         model.addAttribute("addBookSuccess", true);
 
+        // Update the stock count of the book
         book.setInStockNumber(book.getInStockNumber() - Integer.parseInt(qty));
         bookService.save(book);
 
         return "forward:/bookDetails?id="+book.getId();
     }
 
+    // Method to update the quantity of a cart item
     @RequestMapping("/updateCartItem")
     public String updateShoppingCart(
             @ModelAttribute("id") Long cartItemId,
@@ -97,17 +107,21 @@ public class ShoppingCartController {
         return "forward:/shoppingCart/cart";
     }
 
+    // Method to remove an item from the shopping cart
     @RequestMapping("/removeItem")
     public String removeItem(@RequestParam("id") Long id) {
         CartItem cartItem = cartItemService.findById(id);
 
         Book book = cartItem.getBook();
         int removedQty = cartItem.getQty();
+        // Restore the removed quantity to the book's stock count
         book.setInStockNumber(book.getInStockNumber() + removedQty);
         bookService.save(book);
 
+        // Remove the cart item from the database
         cartItemService.removeCartItem(cartItemService.findById(id));
 
+        // Redirect to the shopping cart page
         return "forward:/shoppingCart/cart";
     }
 }
