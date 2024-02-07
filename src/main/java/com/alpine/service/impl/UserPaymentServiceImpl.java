@@ -12,16 +12,17 @@ import java.util.Optional;
 public class UserPaymentServiceImpl implements UserPaymentService {
     @Autowired
     private UserPaymentRepository userPaymentRepository;
-
+    // Retrieves a user payment by its ID.
     public UserPayment findById(Long id) {
         Optional<UserPayment> optionalUserPayment = userPaymentRepository.findById(id);
         return optionalUserPayment.orElse(null);
     }
+    // Saves a user payment.
     public UserPayment save(UserPayment userPayment) {
         return userPaymentRepository.save(userPayment);
     }
+    // Removes a user payment by its ID.
     public void removeById(Long id) {
         userPaymentRepository.deleteById(id);
     }
-
 }
