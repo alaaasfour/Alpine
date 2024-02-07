@@ -40,14 +40,12 @@ Alpine Bookstore is an e-commerce web application designed to sell books online.
 
 ## Screenshots 🖼️
 ### 1. Admin Portal:
-
+![admin-portal.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadmin-portal.png)
 #### a. Adding New Books
 Admins are able to add books to the database through the admin portal, this feature allows the admins to assign the book details such as, Book Title, Author, Category, Price, Quantity in Stock, Book Description and Book Cover Image.
-![adding-new-book.png](..%2F..%2FDownloads%2Fadding-new-book.png)
-
+![adding-new-book.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadding-new-book.png)
 #### b. View the Book List
 The admins can see the list of the books and do 2 main operations on them such as deleting the book or editing it.
-![book-list.png](..%2F..%2FDownloads%2Fbook-list.png)
 
 ### 2. User Portal:
 
