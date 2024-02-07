@@ -48,10 +48,11 @@ Admins are able to add books to the database through the admin portal, this feat
 
 #### b. View the Book List
 The admins can see the list of the books and do 2 main operations on them such as deleting the book or editing it.
-
+![book-list.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fbook-list.png)
 
 ### 2. User Portal:
-
+![user-portal1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-portal1.png)
+![user-portal2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-portal2.png)
 
 
 
