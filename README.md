@@ -79,4 +79,13 @@ The user is able to do the following functionalities:
 ![add-shipping-address.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-shipping-address.png)
 6. Add Books to their Shopping Cart
 
-![add-books-to-shopping-cart.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-books-to-shopping-cart.png)
+![adding-book1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadding-book1.png)
+![adding-book2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadding-book2.png)
+   - Shopping Cart
+![shopping-cart.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fshopping-cart.png)
+
+7. Checkout Page: the user will be able to check out and pay for their order
+
+![checkout1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout1.png)
+![checkout2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout2.png)
+![checkout3.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout3.png)
