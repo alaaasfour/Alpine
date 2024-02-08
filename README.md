@@ -63,14 +63,20 @@ The user is able to do the following functionalities:
 ![user-action1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action1.png)
 ![user-action2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action2.png)
 ![user-action3.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action3.png)
+
+    - After the user types in their email address to create an account, they will receive an email with a random password to reset their new password
+   ![new-user-setup.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fnew-user-setup.png)
 3. After the user logs in, they will be able to edit their account information (Username, password), and they will be able to see their order history, billing information and their shipping addresses.
 ![user-billing.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-billing.png)
 ![user-edit.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-edit.png)
 ![user-order-history.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-order-history.png)
 ![user-shipping.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-shipping.png)
 4. Add New Credit Card
+
 ![add-creditcard.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-creditcard.png)
 5. Add New Shipping Address
+
 ![add-shipping-address.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-shipping-address.png)
 6. Add Books to their Shopping Cart
+
 ![add-books-to-shopping-cart.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-books-to-shopping-cart.png)
