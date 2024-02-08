@@ -65,6 +65,7 @@ The user is able to do the following functionalities:
 ![user-action3.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action3.png)
 
     - After the user types in their email address to create an account, they will receive an email with a random password to reset their new password
+   
    ![new-user-setup.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fnew-user-setup.png)
 3. After the user logs in, they will be able to edit their account information (Username, password), and they will be able to see their order history, billing information and their shipping addresses.
 ![user-billing.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-billing.png)
@@ -74,9 +75,11 @@ The user is able to do the following functionalities:
 4. Add New Credit Card
 
 ![add-creditcard.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-creditcard.png)
+
 5. Add New Shipping Address
 
 ![add-shipping-address.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-shipping-address.png)
+
 6. Add Books to their Shopping Cart
 
 ![adding-book1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadding-book1.png)
@@ -89,3 +92,9 @@ The user is able to do the following functionalities:
 ![checkout1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout1.png)
 ![checkout2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout2.png)
 ![checkout3.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout3.png)
+
+8. Order Submission
+After the user place their order, they will receive an email with their order details
+
+![order-email.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-email.png)
+![order-submission.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-submission.png)
