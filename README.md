@@ -45,7 +45,7 @@ Alpine Bookstore is an e-commerce web application designed to sell books online.
 #### a. Adding New Books
 Admins are able to add books to the database through the admin portal, this feature allows the admins to assign the book details such as, Book Title, Author, Category, Price, Quantity in Stock, Book Description and Book Cover Image.
 ![adding-new-book.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadding-new-book.png)
-
+![book-sample.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fbook-sample.png)
 
 #### b. View the Book List
 The admins can see the list of the books and do 2 main operations on them such as deleting the book or editing it.
@@ -55,5 +55,22 @@ The admins can see the list of the books and do 2 main operations on them such a
 ![user-portal1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-portal1.png)
 ![user-portal2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-portal2.png)
 
-
-
+The user is able to do the following functionalities:
+1. View the bookshelf to see all the available books and filter them based on categories
+![bookshelf-user-portal1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fbookshelf-user-portal1.png)
+![booshelf-user-portal2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fbooshelf-user-portal2.png)
+2. Login, Create New Account and Reset their passwords
+![user-action1.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action1.png)
+![user-action2.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action2.png)
+![user-action3.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-action3.png)
+3. After the user logs in, they will be able to edit their account information (Username, password), and they will be able to see their order history, billing information and their shipping addresses.
+![user-billing.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-billing.png)
+![user-edit.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-edit.png)
+![user-order-history.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-order-history.png)
+![user-shipping.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fuser-shipping.png)
+4. Add New Credit Card
+![add-creditcard.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-creditcard.png)
+5. Add New Shipping Address
+![add-shipping-address.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-shipping-address.png)
+6. Add Books to their Shopping Cart
+![add-books-to-shopping-cart.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fadd-books-to-shopping-cart.png)
