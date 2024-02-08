@@ -94,7 +94,7 @@ The user is able to do the following functionalities:
 ![checkout3.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Fcheckout3.png)
 
 8. Order Submission
-After the user place their order, they will receive an email with their order details
+After the user place their order, they will receive an email confirmation with their order details
 
-![order-email.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-email.png)
 ![order-submission.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-submission.png)
+![order-email.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-email.png)
