@@ -97,4 +97,3 @@ The user is able to do the following functionalities:
 After the user place their order, they will receive an email confirmation with their order details
 
 ![order-submission.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-submission.png)
-![order-email.png](src%2Fmain%2Fresources%2Fstatic%2Fimages%2Forder-email.png)
